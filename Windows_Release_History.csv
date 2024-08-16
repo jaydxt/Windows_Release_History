@@ -1,4 +1,5 @@
 Servicing option,Availability date,Build,KB article,OS Version
+General Availability Channel,2024-08-13,22631.4037,KB5041585,Windows 11
 General Availability Channel,2024-07-25,22631.3958,KB5040527,Windows 11
 General Availability Channel,2024-07-09,22631.388,KB5040442,Windows 11
 General Availability Channel,2024-06-25,22631.381,KB5039302,Windows 11
@@ -18,6 +19,7 @@ General Availability Channel,2023-12-04,22631.2792,KB5032288,Windows 11
 General Availability Channel,2023-11-14,22631.2715,KB5032190,Windows 11
 General Availability Channel,2023-10-31,22631.2506,KB5031455,Windows 11
 General Availability Channel,2023-10-31,22631.2428,,Windows 11
+General Availability Channel,2024-08-13,22621.4037,KB5041585,Windows 11
 General Availability Channel,2024-07-25,22621.3958,KB5040527,Windows 11
 General Availability Channel,2024-07-09,22621.388,KB5040442,Windows 11
 General Availability Channel,2024-06-25,22621.381,KB5039302,Windows 11
@@ -64,6 +66,7 @@ General Availability Channel,2022-10-11,22621.674,KB5018427,Windows 11
 General Availability Channel,2022-09-30,22621.608,KB5017389,Windows 11
 General Availability Channel,2022-09-27,22621.525,KB5019311,Windows 11
 General Availability Channel,2022-09-20,22621.521,,Windows 11
+General Availability Channel,2024-08-13,22000.3147,KB5041592,Windows 11
 General Availability Channel,2024-07-09,22000.3079,KB5040431,Windows 11
 General Availability Channel,2024-06-11,22000.3019,KB5039213,Windows 11
 General Availability Channel,2024-05-14,22000.296,KB5037770,Windows 11
@@ -124,6 +127,7 @@ General Availability Channel,2021-11-09,22000.318,KB5007215,Windows 11
 General Availability Channel,2021-10-21,22000.282,KB5006746,Windows 11
 General Availability Channel,2021-10-12,22000.258,KB5006674,Windows 11
 General Availability Channel,2021-10-04,22000.194,,Windows 11
+General Availability Channel,2024-08-13,19045.4780,KB5041580,Windows 10
 General Availability Channel,2024-07-23,19045.4717,KB5040525,Windows 10
 General Availability Channel,2024-07-09,19045.4651,KB5040427,Windows 10
 General Availability Channel,2024-06-25,19045.4598,KB5039299,Windows 10
@@ -165,6 +169,7 @@ General Availability Channel,2022-12-13,19045.2364,KB5021233,Windows 10
 General Availability Channel,2022-11-15,19045.2311,KB5020030,Windows 10
 General Availability Channel,2022-11-08,19045.2251,KB5019959,Windows 10
 General Availability Channel,2022-10-18,19045.2130,,Windows 10
+LTSC,2024-08-13,19044.4780,KB5041580,Windows 10
 LTSC,2024-07-09,19044.4651,KB5040427,Windows 10
 LTSC  •  General Availability Channel,2024-06-11,19044.4529,KB5039211,Windows 10
 LTSC  •  General Availability Channel,2024-05-14,19044.4412,KB5037768,Windows 10
@@ -476,6 +481,7 @@ Semi-Annual Channel,2019-06-27,18362.207,KB4501375,Windows 10
 Semi-Annual Channel,2019-06-11,18362.175,KB4503293,Windows 10
 Semi-Annual Channel,2019-05-29,18362.145,KB4497935,Windows 10
 Semi-Annual Channel,2019-05-21,18362.116,KB4505057,Windows 10
+LTSC,2024-08-13,17763.6189,KB5041578,Windows 10
 LTSC,2024-07-09,17763.6054,KB5040430,Windows 10
 LTSC,2024-06-11,17763.5936,KB5039217,Windows 10
 LTSC,2024-05-23,17763.5830,KB5039705,Windows 10
@@ -819,6 +825,7 @@ CB,2017-05-26,15063.332,KB4020102,Windows 10
 CB,2017-05-09,15063.296,KB4016871,Windows 10
 CB,2017-04-25,15063.250,KB4016240,Windows 10
 CB,2017-04-11,15063.138,KB4015583,Windows 10
+CBB  •  CB  •  LTSB,2024-08-13,14393.7259,KB5041773,Windows 10
 CBB  •  CB  •  LTSB,2024-07-09,14393.7159,KB5040434,Windows 10
 CBB  •  CB  •  LTSB,2024-06-11,14393.7070,KB5039214,Windows 10
 CBB  •  CB  •  LTSB,2024-05-14,14393.6981,KB5037763,Windows 10
@@ -1017,6 +1024,7 @@ CB,2015-12-02,10586.17,KB3116908,Windows 10
 CB,2015-11-24,10586.14,KB3120677,Windows 10
 CB,2015-11-18,10586.11,KB3118754,Windows 10
 CB,2015-11-10,10586.3,KB3105211,Windows 10
+LTSB,2024-08-13,10240.20751,KB5041782,Windows 10
 LTSB,2024-07-09,10240.20710,KB5040448,Windows 10
 LTSB,2024-06-11,10240.20680,KB5039225,Windows 10
 LTSB,2024-05-14,10240.20651,KB5037788,Windows 10
