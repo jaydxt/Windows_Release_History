@@ -1,0 +1,186 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "risk_26",
+  "position": {
+    "x": 744.0,
+    "y": 454,
+    "z": 26000,
+    "width": 520.0,
+    "height": 250,
+    "tabOrder": 26000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "DeviceName"
+                }
+              },
+              "queryRef": "DevicePatchLevel.DeviceName",
+              "nativeQueryRef": "DeviceName",
+              "displayName": "Device"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "OS"
+                }
+              },
+              "queryRef": "DevicePatchLevel.OS",
+              "nativeQueryRef": "OS",
+              "displayName": "OS version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "ExploitedCVEsMissed"
+                }
+              },
+              "queryRef": "DevicePatchLevel.ExploitedCVEsMissed",
+              "nativeQueryRef": "ExploitedCVEsMissed",
+              "displayName": "Exploited missed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "CriticalCVEsMissed"
+                }
+              },
+              "queryRef": "DevicePatchLevel.CriticalCVEsMissed",
+              "nativeQueryRef": "CriticalCVEsMissed",
+              "displayName": "Critical missed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "RiskLevel"
+                }
+              },
+              "queryRef": "DevicePatchLevel.RiskLevel",
+              "nativeQueryRef": "RiskLevel",
+              "displayName": "Risk"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DevicePatchLevel"
+                  }
+                },
+                "Property": "ExploitedCVEsMissed"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DevicePatchLevel"
+                        }
+                      },
+                      "Property": "Risk Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "DevicePatchLevel.RiskLevel"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Largest exploited CVE gaps'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

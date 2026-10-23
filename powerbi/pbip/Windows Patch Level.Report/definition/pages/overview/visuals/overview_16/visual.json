@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "overview_16",
   "position": {
-    "x": 710,
-    "y": 452,
+    "x": 1012,
+    "y": 10,
     "z": 16000,
-    "width": 554,
-    "height": 262,
+    "width": 122,
+    "height": 62,
     "tabOrder": 16000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "slicer",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
@@ -24,96 +24,67 @@
                       "Entity": "DevicePatchLevel"
                     }
                   },
-                  "Property": "DeviceName"
+                  "Property": "MachineGroup"
                 }
               },
-              "queryRef": "DevicePatchLevel.DeviceName",
-              "nativeQueryRef": "DeviceName",
-              "displayName": "Device"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "OSName"
-                }
-              },
-              "queryRef": "DevicePatchLevel.OSName",
-              "nativeQueryRef": "OSName",
-              "displayName": "OS version"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "PatchMonth"
-                }
-              },
-              "queryRef": "DevicePatchLevel.PatchMonth",
-              "nativeQueryRef": "PatchMonth",
-              "displayName": "Patch month"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "PatchesBehind"
-                }
-              },
-              "queryRef": "DevicePatchLevel.PatchesBehind",
-              "nativeQueryRef": "PatchesBehind",
-              "displayName": "Releases behind"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "RiskLevel"
-                }
-              },
-              "queryRef": "DevicePatchLevel.RiskLevel",
-              "nativeQueryRef": "RiskLevel",
-              "displayName": "Risk"
+              "queryRef": "DevicePatchLevel.MachineGroup",
+              "nativeQueryRef": "MachineGroup",
+              "displayName": "Device group"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "DevicePatchLevel"
-                  }
-                },
-                "Property": "PatchesBehind"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -127,13 +98,18 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Devices furthest behind'"
+                  "Value": "'Device group'"
                 }
               }
             }
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "sync_MachineGroup",
+      "fieldChanges": true,
+      "filterChanges": true
     }
   }
 }

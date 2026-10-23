@@ -1,0 +1,326 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "devices_21",
+  "position": {
+    "x": 212,
+    "y": 158,
+    "z": 21000,
+    "width": 1052,
+    "height": 546,
+    "tabOrder": 21000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "DeviceName"
+                }
+              },
+              "queryRef": "DevicePatchLevel.DeviceName",
+              "nativeQueryRef": "DeviceName",
+              "displayName": "Device"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "MachineGroup"
+                }
+              },
+              "queryRef": "DevicePatchLevel.MachineGroup",
+              "nativeQueryRef": "MachineGroup",
+              "displayName": "Device group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "OSName"
+                }
+              },
+              "queryRef": "DevicePatchLevel.OSName",
+              "nativeQueryRef": "OSName",
+              "displayName": "OS version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "DeviceOSBuild"
+                }
+              },
+              "queryRef": "DevicePatchLevel.DeviceOSBuild",
+              "nativeQueryRef": "DeviceOSBuild",
+              "displayName": "Installed build"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "PatchMonth"
+                }
+              },
+              "queryRef": "DevicePatchLevel.PatchMonth",
+              "nativeQueryRef": "PatchMonth",
+              "displayName": "Patch month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "InstalledSecurityKB"
+                }
+              },
+              "queryRef": "DevicePatchLevel.InstalledSecurityKB",
+              "nativeQueryRef": "InstalledSecurityKB",
+              "displayName": "Installed KB"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "PatchesBehind"
+                }
+              },
+              "queryRef": "DevicePatchLevel.PatchesBehind",
+              "nativeQueryRef": "PatchesBehind",
+              "displayName": "Releases behind"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "CVEsMissed"
+                }
+              },
+              "queryRef": "DevicePatchLevel.CVEsMissed",
+              "nativeQueryRef": "CVEsMissed",
+              "displayName": "CVEs missed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "ExploitedCVEsMissed"
+                }
+              },
+              "queryRef": "DevicePatchLevel.ExploitedCVEsMissed",
+              "nativeQueryRef": "ExploitedCVEsMissed",
+              "displayName": "Exploited missed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "LatestBuild"
+                }
+              },
+              "queryRef": "DevicePatchLevel.LatestBuild",
+              "nativeQueryRef": "LatestBuild",
+              "displayName": "Latest build"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "RiskLevel"
+                }
+              },
+              "queryRef": "DevicePatchLevel.RiskLevel",
+              "nativeQueryRef": "RiskLevel",
+              "displayName": "Risk"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "ExposureLevel"
+                }
+              },
+              "queryRef": "DevicePatchLevel.ExposureLevel",
+              "nativeQueryRef": "ExposureLevel",
+              "displayName": "Exposure"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "LastSeen"
+                }
+              },
+              "queryRef": "DevicePatchLevel.LastSeen",
+              "nativeQueryRef": "LastSeen",
+              "displayName": "Last seen"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DevicePatchLevel"
+                  }
+                },
+                "Property": "PatchesBehind"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DevicePatchLevel"
+                        }
+                      },
+                      "Property": "Risk Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "DevicePatchLevel.RiskLevel"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All devices'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sorted by releases behind – use the filters above to narrow down'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

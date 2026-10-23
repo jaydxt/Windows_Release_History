@@ -2,19 +2,19 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "overview_14",
   "position": {
-    "x": 620,
-    "y": 172,
+    "x": 752,
+    "y": 10,
     "z": 14000,
-    "width": 644,
-    "height": 270,
+    "width": 122,
+    "height": 62,
     "tabOrder": 14000
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "slicer",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -24,346 +24,67 @@
                       "Entity": "DevicePatchLevel"
                     }
                   },
-                  "Property": "OSName"
+                  "Property": "RiskLevel"
                 }
               },
-              "queryRef": "DevicePatchLevel.OSName",
-              "nativeQueryRef": "OSName",
-              "displayName": "OS version"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "Devices"
-                }
-              },
-              "queryRef": "DevicePatchLevel.Devices",
-              "nativeQueryRef": "Devices"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DevicePatchLevel"
-                    }
-                  },
-                  "Property": "PatchStatus"
-                }
-              },
-              "queryRef": "DevicePatchLevel.PatchStatus",
-              "nativeQueryRef": "PatchStatus",
-              "displayName": "Patch status"
+              "queryRef": "DevicePatchLevel.RiskLevel",
+              "nativeQueryRef": "RiskLevel",
+              "displayName": "Risk"
             }
           ]
         }
       }
     },
     "objects": {
-      "dataPoint": [
+      "data": [
         {
           "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2E7D32'"
-                    }
-                  }
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Current'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F9A825'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'1 month behind'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EF6C00'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'2 months behind'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#D84315'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'3-5 months behind'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#B71C1C'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'6+ months behind'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#4A148C'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Unsupported OS'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#9E9E9E'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "DevicePatchLevel"
-                          }
-                        },
-                        "Property": "PatchStatus"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Unverified version'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
           }
         }
       ]
     },
     "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -377,13 +98,18 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Patch status by OS version'"
+                  "Value": "'Risk level'"
                 }
               }
             }
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "sync_RiskLevel",
+      "fieldChanges": true,
+      "filterChanges": true
     }
   }
 }

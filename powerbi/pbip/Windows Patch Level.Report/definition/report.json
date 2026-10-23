@@ -9,6 +9,39 @@
         "report": "3.2.0",
         "page": "2.0.0"
       }
+    },
+    "customTheme": {
+      "name": "PatchIntelligence.json",
+      "type": "RegisteredResources",
+      "reportVersionAtImport": {
+        "visual": "2.10.0",
+        "report": "3.2.0",
+        "page": "2.0.0"
+      }
     }
-  }
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU10",
+          "path": "BaseThemes/CY26SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "PatchIntelligence.json",
+          "path": "PatchIntelligence.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ]
 }

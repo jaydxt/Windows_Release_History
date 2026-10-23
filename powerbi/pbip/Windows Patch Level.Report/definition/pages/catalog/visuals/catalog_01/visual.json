@@ -2,161 +2,126 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "catalog_01",
   "position": {
-    "x": 16,
-    "y": 60,
+    "x": 20,
+    "y": 22,
     "z": 1000,
-    "width": 1248,
-    "height": 300,
+    "width": 164,
+    "height": 52,
     "tabOrder": 1000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "textbox",
     "drillFilterOtherVisuals": true,
-    "query": {
-      "queryState": {
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "PATCH",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#FFFFFF",
+                      "fontFamily": "Segoe UI Semibold"
                     }
                   },
-                  "Property": "OSName"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.OSName",
-              "nativeQueryRef": "OSName",
-              "displayName": "OS version"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
+                  {
+                    "value": "INTEL",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#86B6EF",
+                      "fontFamily": "Segoe UI Semibold"
                     }
-                  },
-                  "Property": "Platform"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.Platform",
-              "nativeQueryRef": "Platform"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
-                    }
-                  },
-                  "Property": "OSLatestPatchMonth"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.OSLatestPatchMonth",
-              "nativeQueryRef": "OSLatestPatchMonth",
-              "displayName": "Latest patch month"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
-                    }
-                  },
-                  "Property": "OSLatestFullBuild"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.OSLatestFullBuild",
-              "nativeQueryRef": "OSLatestFullBuild",
-              "displayName": "Latest build"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
-                    }
-                  },
-                  "Property": "KB"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.KB",
-              "nativeQueryRef": "KB",
-              "displayName": "KB"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
-                    }
-                  },
-                  "Property": "CVECount"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.CVECount",
-              "nativeQueryRef": "CVECount",
-              "displayName": "CVEs fixed"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WindowsSecurityReleases"
-                    }
-                  },
-                  "Property": "OSStillServiced"
-                }
-              },
-              "queryRef": "WindowsSecurityReleases.OSStillServiced",
-              "nativeQueryRef": "OSStillServiced",
-              "displayName": "Still serviced"
-            }
-          ]
-        }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "WindowsSecurityReleases"
                   }
-                },
-                "Property": "OSName"
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Windows · Defender for Endpoint",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#AEB8C8",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
               }
-            },
-            "direction": "Ascending"
+            ]
           }
-        ],
-        "isDefaultSort": true
-      }
+        }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "border": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Latest release per Windows version'"
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -164,62 +129,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "latestOnly",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "WindowsSecurityReleases"
-              }
-            },
-            "Property": "IsLatestForOS"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "t",
-              "Entity": "WindowsSecurityReleases",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "t"
-                          }
-                        },
-                        "Property": "IsLatestForOS"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "true"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
   }
 }

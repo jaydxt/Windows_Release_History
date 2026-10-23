@@ -1,0 +1,241 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "catalog_21",
+  "position": {
+    "x": 212,
+    "y": 454,
+    "z": 21000,
+    "width": 1052,
+    "height": 250,
+    "tabOrder": 21000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "OSName"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.OSName",
+              "nativeQueryRef": "OSName",
+              "displayName": "OS version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "Platform"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.Platform",
+              "nativeQueryRef": "Platform",
+              "displayName": "Platform"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "OSLatestPatchMonth"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.OSLatestPatchMonth",
+              "nativeQueryRef": "OSLatestPatchMonth",
+              "displayName": "Latest release"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "OSLatestFullBuild"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.OSLatestFullBuild",
+              "nativeQueryRef": "OSLatestFullBuild",
+              "displayName": "Latest build"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "KB"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.KB",
+              "nativeQueryRef": "KB",
+              "displayName": "KB"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "CVECount"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.CVECount",
+              "nativeQueryRef": "CVECount",
+              "displayName": "CVEs fixed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "Serviced Label"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.Serviced Label",
+              "nativeQueryRef": "Serviced Label",
+              "displayName": "Support"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WindowsSecurityReleases"
+                  }
+                },
+                "Property": "OSName"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Latest release per Windows version'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "latestOnly",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WindowsSecurityReleases"
+              }
+            },
+            "Property": "IsLatestForOS"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "WindowsSecurityReleases",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "IsLatestForOS"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

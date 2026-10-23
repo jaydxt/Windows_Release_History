@@ -1,15 +1,25 @@
 # Windows Patch Level – Power BI report
 
-`Windows Patch Level.pbix` contains three pages:
+`Windows Patch Level.pbix` is a modern, app-style report: a dark navigation rail (Ctrl+click in
+Desktop, a normal click in the Power BI service), white cards on a light canvas, and dropdown filters in one row that
+stay in sync across pages. Status colours appear only where they carry meaning, always with a text label.
 
-| Page | Shows |
+![Overview](images/overview.png)
+
+| Page | What it answers |
 |---|---|
-| **Patch risk overview** | KPIs (devices, % fully patched, critical risk, average releases behind, devices missing fixes for exploited CVEs, unsupported OS, unverified), status donut, status by OS version, devices by installed patch month (MMM-YYYY), devices furthest behind. Slicers: risk level, platform, device group, OS version |
-| **Needs attention** | Critical and High risk devices with build, installed KB, releases behind, missed CVEs and latest available build: the hand-off list for the patching team |
-| **Windows release catalog** | Latest release per Windows version, and full release history from Microsoft MSRC |
+| **Overview** | How current is the estate? KPIs, compliance gauge vs 95% target, status donut, clients vs servers, installed patch month (MMM-YYYY), furthest-behind devices |
+| **Risk & exposure** | Where are the missing fixes? CVE / critical / exploited gaps, exploited gaps by OS, releases-behind vs critical-CVE scatter, device-group × risk heatmap |
+| **OS landscape** | Which Windows versions are in use and how patched are they? Estate treemap, status share per OS version, OS summary table |
+| **Device explorer** | Every device: find by name, filter by status, with build, KB, releases behind, CVE gaps and risk in colour |
+| **Needs attention** | Critical and High risk devices only: the hand-off list for the patching team (… > Export data) |
+| **Release catalog** | Microsoft releases per Windows version: CVEs fixed per Patch Tuesday, latest release and support status per version |
+| **How to read** | Definitions of every status, risk level and data source, and how to switch to your tenant |
 
-It opens with built-in **Sample** devices, so you can see the layout right away. The subtitle top right
-shows `Data: Sample` or `Data: Defender`.
+![Risk & exposure](images/risk-exposure.png)
+
+It opens with built-in **Sample** devices, so you can see the design straight away. The rail shows
+`Data: Sample` or `Data: Defender`.
 
 ## Connect it to your Defender tenant (on any device)
 
@@ -19,7 +29,7 @@ shows `Data: Sample` or `Data: Defender`.
 4. When asked for credentials for `https://api.securitycenter.microsoft.com`, choose
    **Organizational account → Sign in**, sign in with your work account, then **Connect**.
    If asked for `https://raw.githubusercontent.com`, choose **Anonymous → Connect**.
-5. The subtitle changes to `Data: Defender`. Save the file.
+5. The rail now shows `Data: Defender`. Save the file.
 
 ### Account permissions (least privilege)
 

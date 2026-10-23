@@ -13,6 +13,13 @@
         "name": "DevicePatchLevel",
         "columns": [
           {
+            "type": "calculated",
+            "name": "OS",
+            "dataType": "string",
+            "expression": "SUBSTITUTE ( SUBSTITUTE ( SUBSTITUTE ( SUBSTITUTE ( [OSName], \"Windows Server, Version \", \"Server \" ), \"Windows Server \", \"Server \" ), \"Windows \", \"Win \" ), \" Version \", \" \" )",
+            "summarizeBy": "none"
+          },
+          {
             "name": "LastSeen",
             "dataType": "dateTime",
             "sourceColumn": "LastSeen",
@@ -164,12 +171,19 @@
             "name": "RiskLevel",
             "dataType": "string",
             "sourceColumn": "RiskLevel",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "sortByColumn": "RiskOrder"
           },
           {
             "name": "DataSource",
             "dataType": "string",
             "sourceColumn": "DataSource",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RiskOrder",
+            "dataType": "int64",
+            "sourceColumn": "RiskOrder",
             "summarizeBy": "none"
           }
         ],
@@ -411,7 +425,10 @@
                 "    Source = if DataSource = \"Defender\" then FromDefender() else FromSample(),",
                 "    AllColumns = Table.SelectColumns(Source, {\"LastSeen\", \"DeviceId\", \"DeviceName\", \"MachineGroup\", \"ExposureLevel\", \"OSPlatform\", \"OSArchitecture\", \"OSName\", \"DeviceOSBuild\", \"Platform\", \"BuildNumber\", \"PatchMonth\", \"PatchMonthStart\", \"InstalledSecurityKB\", \"PatchesBehind\", \"CVEsMissed\", \"CriticalCVEsMissed\", \"ExploitedCVEsMissed\", \"LatestPatchMonth\", \"LatestBuild\", \"OSStillServiced\", \"VersionStatus\", \"PatchStatus\", \"PatchStatusOrder\", \"RiskLevel\"}, MissingField.UseNull),",
                 "    WithSource = Table.AddColumn(AllColumns, \"DataSource\", each DataSource, type text),",
-                "    Typed = Table.TransformColumnTypes(WithSource, {{\"LastSeen\", type datetime}, {\"DeviceId\", type text}, {\"DeviceName\", type text}, {\"MachineGroup\", type text}, {\"ExposureLevel\", type text}, {\"OSPlatform\", type text}, {\"OSArchitecture\", type text}, {\"OSName\", type text}, {\"DeviceOSBuild\", type text}, {\"Platform\", type text}, {\"BuildNumber\", Int64.Type}, {\"PatchMonth\", type text}, {\"PatchMonthStart\", type date}, {\"InstalledSecurityKB\", type text}, {\"PatchesBehind\", Int64.Type}, {\"CVEsMissed\", Int64.Type}, {\"CriticalCVEsMissed\", Int64.Type}, {\"ExploitedCVEsMissed\", Int64.Type}, {\"LatestPatchMonth\", type text}, {\"LatestBuild\", type text}, {\"OSStillServiced\", type logical}, {\"VersionStatus\", type text}, {\"PatchStatus\", type text}, {\"PatchStatusOrder\", Int64.Type}, {\"RiskLevel\", type text}, {\"DataSource\", type text}})",
+                "    WithRiskOrder = Table.AddColumn(WithSource, \"RiskOrder\", each",
+                "        if [RiskLevel] = \"Low\" then 1 else if [RiskLevel] = \"Medium\" then 2 else if [RiskLevel] = \"High\" then 3",
+                "        else if [RiskLevel] = \"Critical\" then 4 else 5, Int64.Type),",
+                "    Typed = Table.TransformColumnTypes(WithRiskOrder, {{\"LastSeen\", type datetime}, {\"DeviceId\", type text}, {\"DeviceName\", type text}, {\"MachineGroup\", type text}, {\"ExposureLevel\", type text}, {\"OSPlatform\", type text}, {\"OSArchitecture\", type text}, {\"OSName\", type text}, {\"DeviceOSBuild\", type text}, {\"Platform\", type text}, {\"BuildNumber\", Int64.Type}, {\"PatchMonth\", type text}, {\"PatchMonthStart\", type date}, {\"InstalledSecurityKB\", type text}, {\"PatchesBehind\", Int64.Type}, {\"CVEsMissed\", Int64.Type}, {\"CriticalCVEsMissed\", Int64.Type}, {\"ExploitedCVEsMissed\", Int64.Type}, {\"LatestPatchMonth\", type text}, {\"LatestBuild\", type text}, {\"OSStillServiced\", type logical}, {\"VersionStatus\", type text}, {\"PatchStatus\", type text}, {\"PatchStatusOrder\", Int64.Type}, {\"RiskLevel\", type text}, {\"DataSource\", type text}, {\"RiskOrder\", Int64.Type}})",
                 "in",
                 "    Typed"
               ]
@@ -435,8 +452,23 @@
             "formatString": "0.0%"
           },
           {
+            "name": "Compliance Target",
+            "expression": "0.95",
+            "formatString": "0%"
+          },
+          {
+            "name": "Gauge Max",
+            "expression": "1",
+            "formatString": "0%"
+          },
+          {
             "name": "Devices Behind",
             "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchesBehind] >= 1 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Devices 3+ Behind",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchesBehind] >= 3 )",
             "formatString": "#,0"
           },
           {
@@ -465,18 +497,62 @@
             "formatString": "#,0"
           },
           {
+            "name": "CVE Exposures",
+            "expression": "SUM ( DevicePatchLevel[CVEsMissed] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Critical CVE Exposures",
+            "expression": "SUM ( DevicePatchLevel[CriticalCVEsMissed] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Exploited CVE Exposures",
+            "expression": "SUM ( DevicePatchLevel[ExploitedCVEsMissed] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "% Current Clients",
+            "expression": "CALCULATE ( [% Current], DevicePatchLevel[Platform] = \"Client\" )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "% Current Servers",
+            "expression": "CALCULATE ( [% Current], DevicePatchLevel[Platform] = \"Server\" )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Risk Color",
+            "expression": "SWITCH ( SELECTEDVALUE ( DevicePatchLevel[RiskLevel] ), \"Critical\", \"#B42323\", \"High\", \"#C25A2E\", \"Medium\", \"#9A6A00\", \"Low\", \"#0A7F0A\", \"#6B6B67\" )"
+          },
+          {
             "name": "Latest Patch Month",
             "expression": "FORMAT ( MAX ( WindowsSecurityReleases[PatchMonthStart] ), \"MMM-yyyy\" )"
           },
           {
+            "name": "Data Source Label",
+            "expression": "\"Data: \" & SELECTEDVALUE ( DevicePatchLevel[DataSource], \"Defender\" )"
+          },
+          {
+            "name": "Data As Of",
+            "expression": "\"Devices seen up to \" & FORMAT ( MAX ( DevicePatchLevel[LastSeen] ), \"dd-MMM-yyyy HH:mm\" )"
+          },
+          {
             "name": "Report Subtitle",
-            "expression": "\"Data: \" & SELECTEDVALUE ( DevicePatchLevel[DataSource], \"Defender\" ) & \"  |  Devices seen up to \" & FORMAT ( MAX ( DevicePatchLevel[LastSeen] ), \"dd-MMM-yyyy HH:mm\" ) & \"  |  Latest Microsoft release: \" & [Latest Patch Month]"
+            "expression": "[Data Source Label] & \"  |  \" & [Data As Of] & \"  |  Latest Microsoft release: \" & [Latest Patch Month]"
           }
         ]
       },
       {
         "name": "WindowsSecurityReleases",
         "columns": [
+          {
+            "type": "calculated",
+            "name": "OS",
+            "dataType": "string",
+            "expression": "SUBSTITUTE ( SUBSTITUTE ( SUBSTITUTE ( SUBSTITUTE ( [OSName], \"Windows Server, Version \", \"Server \" ), \"Windows Server \", \"Server \" ), \"Windows \", \"Win \" ), \" Version \", \" \" )",
+            "summarizeBy": "none"
+          },
           {
             "name": "OSFamily",
             "dataType": "string",
@@ -639,7 +715,42 @@
             }
           }
         ],
-        "measures": []
+        "measures": [
+          {
+            "name": "Windows Versions Tracked",
+            "expression": "DISTINCTCOUNT ( WindowsSecurityReleases[OSName] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Windows Versions Serviced",
+            "expression": "CALCULATE ( DISTINCTCOUNT ( WindowsSecurityReleases[OSName] ), WindowsSecurityReleases[OSStillServiced] = TRUE () )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Releases Tracked",
+            "expression": "COUNTROWS ( WindowsSecurityReleases )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "CVEs Fixed",
+            "expression": "MAX ( WindowsSecurityReleases[CVECount] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Latest Release CVEs",
+            "expression": "VAR m = MAX ( WindowsSecurityReleases[PatchMonthStart] ) RETURN CALCULATE ( MAX ( WindowsSecurityReleases[CVECount] ), WindowsSecurityReleases[PatchMonthStart] = m )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Latest Release Exploited",
+            "expression": "VAR m = MAX ( WindowsSecurityReleases[PatchMonthStart] ) RETURN CALCULATE ( MAX ( WindowsSecurityReleases[ExploitedCVECount] ), WindowsSecurityReleases[PatchMonthStart] = m )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Serviced Label",
+            "expression": "IF ( SELECTEDVALUE ( WindowsSecurityReleases[OSStillServiced] ), \"Serviced\", \"End of support\" )"
+          }
+        ]
       }
     ],
     "expressions": [
