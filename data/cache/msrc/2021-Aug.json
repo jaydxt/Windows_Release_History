@@ -1,0 +1,399 @@
+{
+ "ExtractVersion": 2,
+ "ID": "2021-Aug",
+ "PatchMonthStart": "2021-08-01",
+ "ReleaseDate": "2021-08-10",
+ "CurrentReleaseDate": "2026-09-17T01:53:37Z",
+ "Releases": [
+  {
+   "OSName": "Windows 10 Version 1507",
+   "Platform": "Client",
+   "KB": "KB5005040",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.10240.19022",
+   "CVECount": 21,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1507",
+   "Platform": "Client",
+   "KB": "KB5005569",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.10240.19060",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1607",
+   "Platform": "Client",
+   "KB": "KB5005043",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.4583",
+   "CVECount": 22,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1607",
+   "Platform": "Client",
+   "KB": "KB5005573",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.4651",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1809",
+   "Platform": "Client",
+   "KB": "KB5005030",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.2114",
+   "CVECount": 24,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 1809",
+   "Platform": "Client",
+   "KB": "KB5005568",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.2183",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1909",
+   "Platform": "Client",
+   "KB": "KB5005031",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.18363.1734",
+   "CVECount": 23,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 1909",
+   "Platform": "Client",
+   "KB": "KB5005566",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.18363.1801",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 2004",
+   "Platform": "Client",
+   "KB": "KB5005033",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19041.1165",
+   "CVECount": 24,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 2004",
+   "Platform": "Client",
+   "KB": "KB5005565",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19041.1237",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 20H2",
+   "Platform": "Client",
+   "KB": "KB5005033",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19042.1165",
+   "CVECount": 24,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 20H2",
+   "Platform": "Client",
+   "KB": "KB5005565",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19042.1237",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 21H1",
+   "Platform": "Client",
+   "KB": "KB5005033",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19043.1165",
+   "CVECount": 24,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 21H1",
+   "Platform": "Client",
+   "KB": "KB5005565",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19043.1237",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 7",
+   "Platform": "Client",
+   "KB": "KB5005088",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25685",
+   "CVECount": 11,
+   "CriticalCVECount": 4,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 7",
+   "Platform": "Client",
+   "KB": "KB5005633",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25712",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 7",
+   "Platform": "Client",
+   "KB": "KB5011552",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25898",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 8.1",
+   "Platform": "Client",
+   "KB": "KB5005076",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20094",
+   "CVECount": 17,
+   "CriticalCVECount": 5,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 8.1",
+   "Platform": "Client",
+   "KB": "KB5005613",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20120",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 8.1",
+   "Platform": "Client",
+   "KB": "KB5011564",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20303",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008",
+   "Platform": "Server",
+   "KB": "KB5005090",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.0.6003.21192",
+   "CVECount": 9,
+   "CriticalCVECount": 2,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008",
+   "Platform": "Server",
+   "KB": "KB5005606",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.0.6003.21218",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008",
+   "Platform": "Server",
+   "KB": "KB5011534",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.0.6003.21416",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008 R2",
+   "Platform": "Server",
+   "KB": "KB5005088",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25685",
+   "CVECount": 12,
+   "CriticalCVECount": 4,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008 R2",
+   "Platform": "Server",
+   "KB": "KB5005633",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25712",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008 R2",
+   "Platform": "Server",
+   "KB": "KB5011552",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.25898",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5005099",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.23435",
+   "CVECount": 17,
+   "CriticalCVECount": 5,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5005623",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.23462",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5011535",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.23645",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5011527",
+   "UpdateType": "Security Only",
+   "FixedBuild": "6.2.9200.23639",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5005076",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20094",
+   "CVECount": 18,
+   "CriticalCVECount": 5,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5005613",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20120",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5011564",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.20303",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2016",
+   "Platform": "Server",
+   "KB": "KB5005043",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.4583",
+   "CVECount": 23,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2016",
+   "Platform": "Server",
+   "KB": "KB5005573",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.4651",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2019",
+   "Platform": "Server",
+   "KB": "KB5005030",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.2114",
+   "CVECount": 25,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2019",
+   "Platform": "Server",
+   "KB": "KB5005568",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.2183",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server, Version 2004",
+   "Platform": "Server",
+   "KB": "KB5005033",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19041.1165",
+   "CVECount": 22,
+   "CriticalCVECount": 4,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server, Version 2004",
+   "Platform": "Server",
+   "KB": "KB5005565",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19041.1237",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  }
+ ]
+}

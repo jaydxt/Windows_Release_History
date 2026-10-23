@@ -1,0 +1,24 @@
+{
+  "GeneratedUtc": "2026-10-23T14:45:13Z",
+  "LatestPatchMonth": "Oct-2026",
+  "Rows": 1842,
+  "OSVersions": 35,
+  "OSVersionsStillServiced": [
+    "Windows 10 Version 1607",
+    "Windows 10 Version 1809",
+    "Windows 10 Version 21H2",
+    "Windows 10 Version 22H2",
+    "Windows 11 Version 23H2",
+    "Windows 11 Version 24H2",
+    "Windows 11 Version 25H2",
+    "Windows 11 Version 26H1",
+    "Windows 11 Version 26H2",
+    "Windows Server 2012",
+    "Windows Server 2012 R2",
+    "Windows Server 2016",
+    "Windows Server 2019",
+    "Windows Server 2022",
+    "Windows Server 2025"
+  ],
+  "Source": "https://api.msrc.microsoft.com/cvrf/v3.0/updates"
+}

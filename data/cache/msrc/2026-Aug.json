@@ -1,0 +1,199 @@
+{
+ "ExtractVersion": 2,
+ "ID": "2026-Aug",
+ "PatchMonthStart": "2026-08-01",
+ "ReleaseDate": "2026-08-11",
+ "CurrentReleaseDate": "2026-10-23T01:16:49Z",
+ "Releases": [
+  {
+   "OSName": "Windows 10 Version 1607",
+   "Platform": "Client",
+   "KB": "KB5120418",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.9418",
+   "CVECount": 145,
+   "CriticalCVECount": 11,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 1809",
+   "Platform": "Client",
+   "KB": "KB5120238",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.9121",
+   "CVECount": 160,
+   "CriticalCVECount": 12,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 21H2",
+   "Platform": "Client",
+   "KB": "KB5120249",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19044.7663",
+   "CVECount": 156,
+   "CriticalCVECount": 6,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 10 Version 22H2",
+   "Platform": "Client",
+   "KB": "KB5120249",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19045.7663",
+   "CVECount": 157,
+   "CriticalCVECount": 6,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 11 Version 23H2",
+   "Platform": "Client",
+   "KB": "KB5120240",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22631.7517",
+   "CVECount": 166,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 11 Version 24H2",
+   "Platform": "Client",
+   "KB": "KB5121003",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26100.9168",
+   "CVECount": 190,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 11 Version 24H2",
+   "Platform": "Client",
+   "KB": "KB5129195",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26100.9457",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 24H2",
+   "Platform": "Client",
+   "KB": "KB5123273",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26100.9165",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 25H2",
+   "Platform": "Client",
+   "KB": "KB5121003",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26200.9168",
+   "CVECount": 190,
+   "CriticalCVECount": 7,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 11 Version 25H2",
+   "Platform": "Client",
+   "KB": "KB5129195",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26200.9457",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 25H2",
+   "Platform": "Client",
+   "KB": "KB5123273",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26200.9165",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 26H1",
+   "Platform": "Client",
+   "KB": "KB5121000",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.28000.2704",
+   "CVECount": 191,
+   "CriticalCVECount": 8,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows 11 Version 26H1",
+   "Platform": "Client",
+   "KB": "KB5129194",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.28000.2956",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5120386",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.26280",
+   "CVECount": 137,
+   "CriticalCVECount": 14,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5120385",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.23338",
+   "CVECount": 142,
+   "CriticalCVECount": 14,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2016",
+   "Platform": "Server",
+   "KB": "KB5120418",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.9418",
+   "CVECount": 163,
+   "CriticalCVECount": 16,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2019",
+   "Platform": "Server",
+   "KB": "KB5120238",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.9121",
+   "CVECount": 181,
+   "CriticalCVECount": 18,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2022",
+   "Platform": "Server",
+   "KB": "KB5120242",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.20348.5499",
+   "CVECount": 191,
+   "CriticalCVECount": 19,
+   "ExploitedCVECount": 1
+  },
+  {
+   "OSName": "Windows Server 2025",
+   "Platform": "Server",
+   "KB": "KB5120233",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26100.33296",
+   "CVECount": 211,
+   "CriticalCVECount": 19,
+   "ExploitedCVECount": 1
+  }
+ ]
+}

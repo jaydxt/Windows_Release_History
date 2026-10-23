@@ -1,0 +1,7 @@
+// Run once in Advanced Hunting before using DevicePatchLevel.kql.
+// Confirms Defender Vulnerability Management reports the full OS build (with revision) per device.
+// Expected: SoftwareName like windows_11 / windows_server_2022, SoftwareVersion like 10.0.26100.9711
+DeviceTvmSoftwareInventory
+| where SoftwareVendor == "microsoft" and SoftwareName matches regex @"^windows_(server_)?[0-9]"
+| summarize Devices = dcount(DeviceId), ExampleVersions = make_set(SoftwareVersion, 5) by SoftwareName
+| order by Devices desc

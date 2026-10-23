@@ -1,0 +1,149 @@
+{
+ "ExtractVersion": 2,
+ "ID": "2023-Aug",
+ "PatchMonthStart": "2023-08-01",
+ "ReleaseDate": "2023-08-08",
+ "CurrentReleaseDate": "2026-10-21T18:39:18Z",
+ "Releases": [
+  {
+   "OSName": "Windows 10 Version 1507",
+   "Platform": "Client",
+   "KB": "KB5029259",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.10240.20107",
+   "CVECount": 26,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1607",
+   "Platform": "Client",
+   "KB": "KB5029242",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.6167",
+   "CVECount": 27,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1809",
+   "Platform": "Client",
+   "KB": "KB5029247",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.4737",
+   "CVECount": 31,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 21H2",
+   "Platform": "Client",
+   "KB": "KB5029244",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19044.3324",
+   "CVECount": 32,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 22H2",
+   "Platform": "Client",
+   "KB": "KB5029244",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19045.3324",
+   "CVECount": 32,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 21H2",
+   "Platform": "Client",
+   "KB": "KB5029253",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22000.2295",
+   "CVECount": 33,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 22H2",
+   "Platform": "Client",
+   "KB": "KB5029263",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22621.2134",
+   "CVECount": 33,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008",
+   "Platform": "Server",
+   "KB": "KB5029318",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.0.6003.22216",
+   "CVECount": 21,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008 R2",
+   "Platform": "Server",
+   "KB": "KB5029296",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.26664",
+   "CVECount": 25,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5029295",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.24414",
+   "CVECount": 24,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5029312",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.21503",
+   "CVECount": 25,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2016",
+   "Platform": "Server",
+   "KB": "KB5029242",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.6167",
+   "CVECount": 27,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2019",
+   "Platform": "Server",
+   "KB": "KB5029247",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.4737",
+   "CVECount": 31,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2022",
+   "Platform": "Server",
+   "KB": "KB5029250",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.20348.1906",
+   "CVECount": 30,
+   "CriticalCVECount": 3,
+   "ExploitedCVECount": 0
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+name: Update Windows security release catalog
+
+on:
+  schedule:
+    # Daily 06:30 UTC on the 8th-16th: Patch Tuesday is always the 2nd Tuesday (8th-14th),
+    # and MSRC sometimes completes its data a day or two later.
+    - cron: "30 6 8-16 * *"
+    # Weekly on Mondays: out-of-band releases and Microsoft's CVE revisions.
+    - cron: "30 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: "Ignore the cache and rebuild every month from MSRC"
+        type: boolean
+        default: false
+
+# Least privilege: nothing by default; the job below gets only what it needs.
+permissions: {}
+
+concurrency:
+  group: update-catalog
+  cancel-in-progress: false
+
+jobs:
+  update:
+    # Only ever publish from the default branch.
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write   # commit the refreshed CSV; no other scopes
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1 (pinned by commit)
+        with:
+          persist-credentials: false   # the token is not left in .git/config while scripts run
+
+      # Standard library only (runner's built-in Python): no third-party packages are installed.
+      - name: Build catalog from MSRC
+        id: build
+        env:
+          FULL_REFRESH: ${{ inputs.full_refresh }}
+        run: |
+          args=(--data-dir data --summary-out "$RUNNER_TEMP/summary.md")
+          if [ "$FULL_REFRESH" = "true" ]; then args+=(--full-refresh); fi
+          python3 -I scripts/build_catalog.py "${args[@]}"
+
+      - name: Commit and push
+        if: steps.build.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MATERIAL: ${{ steps.build.outputs.material }}
+          LATEST_MONTH: ${{ steps.build.outputs.latest_month }}
+          NEW_RELEASES: ${{ steps.build.outputs.new_release_count }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if [ "$MATERIAL" = "true" ]; then
+            git commit -m "Catalog: $LATEST_MONTH ($NEW_RELEASES new releases)"
+          else
+            git commit -m "Catalog: MSRC revisions (no new releases)"
+          fi
+          remote="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git pull --rebase "$remote" "$BRANCH"
+          git push "$remote" "HEAD:$BRANCH"
+
+      # Secrets are exposed only to the notification steps.
+      - name: Notify - new releases published
+        if: steps.build.outputs.material == 'true'
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python3 -I scripts/notify.py --status success --summary-file "$RUNNER_TEMP/summary.md"
+
+      - name: Notify - failure
+        if: failure()
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python3 -I scripts/notify.py --status failure

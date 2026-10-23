@@ -1,0 +1,106 @@
+// =====================================================================================
+// Windows patch level per device  -  Microsoft Defender for Endpoint (Advanced Hunting)
+// Catalog: Windows monthly security releases built from the Microsoft MSRC API and
+//          refreshed automatically by GitHub Actions (data/Windows_Security_Releases.csv)
+// =====================================================================================
+let LookbackDays = 30d;          // devices seen in this window
+// Risk thresholds (security releases behind)
+let MediumAt = 1;
+let HighAt = 2;
+let CriticalAt = 3;
+let Catalog = externaldata(
+        OSFamily:string, OSName:string, Platform:string, BuildNumber:long, Revision:long,
+        FullBuild:string, KB:string, UpdateType:string, PatchMonth:string, PatchMonthStart:datetime,
+        ReleaseDate:datetime, ReleaseRank:long, IsLatestForOS:bool,
+        CVECount:long, CriticalCVECount:long, ExploitedCVECount:long,
+        CVEsReleasedSince:long, CriticalCVEsReleasedSince:long, ExploitedCVEsReleasedSince:long,
+        OSLatestPatchMonth:string, OSLatestFullBuild:string, OSStillServiced:bool, MsrcDocumentId:string)
+    [h@"https://raw.githubusercontent.com/jaydxt/Windows_Release_History/master/data/Windows_Security_Releases.csv"]
+    with (format="csv", ignoreFirstRecord=true);
+let CatalogWithBuild = Catalog | where isnotnull(Revision);
+// One row per OS version (Platform + BuildNumber) with its latest and earliest known release
+let OSInfo = CatalogWithBuild
+    | extend EarliestPatchMonth = PatchMonth, EarliestRank = ReleaseRank,
+             EarliestCVEs = CVEsReleasedSince + CVECount,
+             EarliestCriticalCVEs = CriticalCVEsReleasedSince + CriticalCVECount,
+             EarliestExploitedCVEs = ExploitedCVEsReleasedSince + ExploitedCVECount
+    | summarize arg_min(Revision, EarliestPatchMonth, EarliestRank, EarliestCVEs, EarliestCriticalCVEs, EarliestExploitedCVEs),
+                CatalogOSName = take_any(OSName), OSStillServiced = take_any(OSStillServiced),
+                OSLatestPatchMonth = take_any(OSLatestPatchMonth), OSLatestFullBuild = take_any(OSLatestFullBuild)
+      by Platform, BuildNumber
+    | project-away Revision;
+// Device OS from DeviceInfo, full build (with revision) from Vulnerability Management inventory
+let DeviceOS = DeviceInfo
+    | where Timestamp > ago(LookbackDays)
+    | where OSPlatform startswith "Windows"
+    | summarize arg_max(Timestamp, *) by DeviceId
+    | project LastSeen = Timestamp, DeviceId, DeviceName, MachineGroup, OSPlatform, OSVersionInfo,
+              OSArchitecture, DeviceInfoBuild = OSBuild, ExposureLevel;
+let TvmOS = DeviceTvmSoftwareInventory
+    | where SoftwareVendor == "microsoft" and SoftwareName matches regex @"^windows_(server_)?[0-9]"
+    | extend TvmBuild = tolong(extract(@"(\d{4,5})\.(\d+)$", 1, SoftwareVersion)),
+             TvmRevision = tolong(extract(@"(\d{4,5})\.(\d+)$", 2, SoftwareVersion))
+    | where isnotnull(TvmRevision)
+    | summarize arg_max(TvmRevision, TvmBuild, DeviceOSBuild = SoftwareVersion) by DeviceId;
+let Devices = DeviceOS
+    | join kind=leftouter TvmOS on DeviceId
+    | project-away DeviceId1
+    | extend Platform = iff(OSPlatform contains "Server", "Server", "Client"),
+             BuildNumber = coalesce(TvmBuild, tolong(DeviceInfoBuild)),
+             Revision = TvmRevision;
+// Latest monthly security release each device's build already contains
+let Matched = Devices
+    | where isnotnull(Revision)
+    | project DeviceId, Platform, BuildNumber, DeviceRevision = Revision
+    | join kind=inner (CatalogWithBuild
+        | project Platform, BuildNumber, Revision, OSName, PatchMonth, PatchMonthStart, KB, ReleaseRank,
+                  CVEsReleasedSince, CriticalCVEsReleasedSince, ExploitedCVEsReleasedSince)
+      on Platform, BuildNumber
+    | where Revision <= DeviceRevision
+    | summarize arg_max(Revision, OSName, PatchMonth, PatchMonthStart, KB, ReleaseRank,
+                        CVEsReleasedSince, CriticalCVEsReleasedSince, ExploitedCVEsReleasedSince) by DeviceId
+    | project-away Revision;
+Devices
+| join kind=leftouter Matched on DeviceId
+| join kind=leftouter OSInfo on Platform, BuildNumber
+| extend VersionStatus = case(
+        isempty(CatalogOSName), "Unverified version - OS build not in Microsoft security catalog",
+        isnull(Revision), "Unverified version - build revision not reported",
+        isnull(ReleaseRank), "Older than catalog history",
+        "Verified")
+| extend OSName = coalesce(OSName, CatalogOSName, strcat(OSPlatform, " ", OSVersionInfo)),
+         PatchMonth = case(
+            VersionStatus == "Verified", PatchMonth,
+            VersionStatus == "Older than catalog history", strcat("Before ", EarliestPatchMonth),
+            "Unverified version"),
+         PatchesBehind = case(
+            VersionStatus == "Verified", ReleaseRank - 1,
+            VersionStatus == "Older than catalog history", EarliestRank,
+            long(null)),
+         CVEsMissed = iff(VersionStatus == "Verified", CVEsReleasedSince, iff(VersionStatus == "Older than catalog history", EarliestCVEs, long(null))),
+         CriticalCVEsMissed = iff(VersionStatus == "Verified", CriticalCVEsReleasedSince, iff(VersionStatus == "Older than catalog history", EarliestCriticalCVEs, long(null))),
+         ExploitedCVEsMissed = iff(VersionStatus == "Verified", ExploitedCVEsReleasedSince, iff(VersionStatus == "Older than catalog history", EarliestExploitedCVEs, long(null)))
+| extend PatchStatus = case(
+        VersionStatus startswith "Unverified", "Unverified version",
+        OSStillServiced == false, "Unsupported OS",
+        PatchesBehind == 0, "Current",
+        PatchesBehind == 1, "1 month behind",
+        PatchesBehind == 2, "2 months behind",
+        PatchesBehind <= 5, "3-5 months behind",
+        "6+ months behind")
+| extend PatchStatusOrder = case(PatchStatus == "Current", 1, PatchStatus == "1 month behind", 2,
+                                 PatchStatus == "2 months behind", 3, PatchStatus == "3-5 months behind", 4,
+                                 PatchStatus == "6+ months behind", 5, PatchStatus == "Unsupported OS", 6, 7),
+         RiskLevel = case(
+            VersionStatus startswith "Unverified", "Unknown",
+            OSStillServiced == false or PatchesBehind >= CriticalAt, "Critical",
+            PatchesBehind >= HighAt, "High",
+            PatchesBehind >= MediumAt, "Medium",
+            "Low")
+| project LastSeen, DeviceId, DeviceName, MachineGroup, ExposureLevel, OSPlatform, OSArchitecture,
+          OSName, DeviceOSBuild = coalesce(DeviceOSBuild, tostring(BuildNumber)), Platform, BuildNumber,
+          PatchMonth, PatchMonthStart, InstalledSecurityKB = KB, PatchesBehind,
+          CVEsMissed, CriticalCVEsMissed, ExploitedCVEsMissed,
+          LatestPatchMonth = OSLatestPatchMonth, LatestBuild = OSLatestFullBuild, OSStillServiced,
+          VersionStatus, PatchStatus, PatchStatusOrder, RiskLevel
+| order by PatchStatusOrder desc, PatchesBehind desc, DeviceName asc

@@ -1,0 +1,31 @@
+// Create each measure on the DevicePatchLevel table (Modeling > New measure), one at a time.
+
+Devices = DISTINCTCOUNT ( DevicePatchLevel[DeviceId] )
+
+Devices Current = CALCULATE ( [Devices], DevicePatchLevel[PatchStatus] = "Current" )
+
+% Current = DIVIDE ( [Devices Current], [Devices] )
+
+Devices Behind = CALCULATE ( [Devices], DevicePatchLevel[PatchesBehind] >= 1 )
+
+Devices Critical Risk = CALCULATE ( [Devices], DevicePatchLevel[RiskLevel] = "Critical" )
+
+Devices Unsupported OS = CALCULATE ( [Devices], DevicePatchLevel[OSStillServiced] = FALSE () )
+
+Devices Unverified = CALCULATE ( [Devices], DevicePatchLevel[PatchStatus] = "Unverified version" )
+
+Avg Patches Behind =
+AVERAGEX (
+    FILTER ( DevicePatchLevel, NOT ISBLANK ( DevicePatchLevel[PatchesBehind] ) ),
+    DevicePatchLevel[PatchesBehind]
+)
+
+Missed CVEs (device total) = SUM ( DevicePatchLevel[CVEsMissed] )
+
+Devices Missing Exploited CVEs = CALCULATE ( [Devices], DevicePatchLevel[ExploitedCVEsMissed] > 0 )
+
+Latest Patch Month =
+FORMAT ( MAX ( WindowsSecurityReleases[PatchMonthStart] ), "MMM-yyyy" )
+
+Data As Of =
+"Devices last seen up to " & FORMAT ( MAX ( DevicePatchLevel[LastSeen] ), "dd-MMM-yyyy HH:mm" ) & " UTC"

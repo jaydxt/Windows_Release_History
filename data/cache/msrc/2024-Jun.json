@@ -1,0 +1,169 @@
+{
+ "ExtractVersion": 2,
+ "ID": "2024-Jun",
+ "PatchMonthStart": "2024-06-01",
+ "ReleaseDate": "2024-06-11",
+ "CurrentReleaseDate": "2026-10-09T02:41:32Z",
+ "Releases": [
+  {
+   "OSName": "Windows 10 Version 1507",
+   "Platform": "Client",
+   "KB": "KB5039225",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.10240.20680",
+   "CVECount": 22,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1607",
+   "Platform": "Client",
+   "KB": "KB5039214",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.7070",
+   "CVECount": 23,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 1809",
+   "Platform": "Client",
+   "KB": "KB5039217",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.5936",
+   "CVECount": 27,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 21H2",
+   "Platform": "Client",
+   "KB": "KB5039211",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19044.4529",
+   "CVECount": 27,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 10 Version 22H2",
+   "Platform": "Client",
+   "KB": "KB5039211",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.19045.4529",
+   "CVECount": 27,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 21H2",
+   "Platform": "Client",
+   "KB": "KB5039213",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22000.3019",
+   "CVECount": 27,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 22H2",
+   "Platform": "Client",
+   "KB": "KB5039212",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22621.3737",
+   "CVECount": 28,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 23H2",
+   "Platform": "Client",
+   "KB": "KB5039212",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.22631.3737",
+   "CVECount": 28,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows 11 Version 24H2",
+   "Platform": "Client",
+   "KB": "KB5043080",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.26100.1742",
+   "CVECount": 1,
+   "CriticalCVECount": 0,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008",
+   "Platform": "Server",
+   "KB": "KB5039245",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.0.6003.22720",
+   "CVECount": 15,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2008 R2",
+   "Platform": "Server",
+   "KB": "KB5039289",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.1.7601.27170",
+   "CVECount": 15,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012",
+   "Platform": "Server",
+   "KB": "KB5039260",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.2.9200.24919",
+   "CVECount": 19,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2012 R2",
+   "Platform": "Server",
+   "KB": "KB5039294",
+   "UpdateType": "Monthly Rollup",
+   "FixedBuild": "6.3.9600.22023",
+   "CVECount": 21,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2016",
+   "Platform": "Server",
+   "KB": "KB5039214",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.14393.7070",
+   "CVECount": 27,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2019",
+   "Platform": "Server",
+   "KB": "KB5039217",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.17763.5936",
+   "CVECount": 31,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  },
+  {
+   "OSName": "Windows Server 2022",
+   "Platform": "Server",
+   "KB": "KB5039227",
+   "UpdateType": "Security Update",
+   "FixedBuild": "10.0.20348.2527",
+   "CVECount": 30,
+   "CriticalCVECount": 1,
+   "ExploitedCVECount": 0
+  }
+ ]
+}
