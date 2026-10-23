@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 *.pbix.bak
+
+# Power BI Desktop local cache/settings (never commit data caches)
+.pbi/

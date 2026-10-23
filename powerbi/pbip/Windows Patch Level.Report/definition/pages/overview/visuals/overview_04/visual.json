@@ -1,0 +1,76 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "overview_04",
+  "position": {
+    "x": 16,
+    "y": 388,
+    "z": 4000,
+    "width": 200,
+    "height": 154,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "MachineGroup"
+                }
+              },
+              "queryRef": "DevicePatchLevel.MachineGroup",
+              "nativeQueryRef": "MachineGroup",
+              "displayName": "Device group"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Device group'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

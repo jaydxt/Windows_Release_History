@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "catalog_03",
+  "position": {
+    "x": 288,
+    "y": 372,
+    "z": 3000,
+    "width": 976,
+    "height": 336,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "OSName"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.OSName",
+              "nativeQueryRef": "OSName",
+              "displayName": "OS version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "PatchMonth"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.PatchMonth",
+              "nativeQueryRef": "PatchMonth",
+              "displayName": "Patch month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "KB"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.KB",
+              "nativeQueryRef": "KB",
+              "displayName": "KB"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "FullBuild"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.FullBuild",
+              "nativeQueryRef": "FullBuild",
+              "displayName": "Build"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "CVECount"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.CVECount",
+              "nativeQueryRef": "CVECount",
+              "displayName": "CVEs fixed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "CriticalCVECount"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.CriticalCVECount",
+              "nativeQueryRef": "CriticalCVECount",
+              "displayName": "Critical"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "ExploitedCVECount"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.ExploitedCVECount",
+              "nativeQueryRef": "ExploitedCVECount",
+              "displayName": "Exploited"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WindowsSecurityReleases"
+                    }
+                  },
+                  "Property": "ReleaseDate"
+                }
+              },
+              "queryRef": "WindowsSecurityReleases.ReleaseDate",
+              "nativeQueryRef": "ReleaseDate",
+              "displayName": "Release date"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WindowsSecurityReleases"
+                  }
+                },
+                "Property": "ReleaseDate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Release history'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "overview_03",
+  "position": {
+    "x": 16,
+    "y": 226,
+    "z": 3000,
+    "width": 200,
+    "height": 154,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "Platform"
+                }
+              },
+              "queryRef": "DevicePatchLevel.Platform",
+              "nativeQueryRef": "Platform"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Platform'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

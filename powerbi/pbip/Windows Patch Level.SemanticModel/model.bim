@@ -1,0 +1,663 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "tables": [
+      {
+        "name": "DevicePatchLevel",
+        "columns": [
+          {
+            "name": "LastSeen",
+            "dataType": "dateTime",
+            "sourceColumn": "LastSeen",
+            "summarizeBy": "none",
+            "formatString": "dd-MMM-yyyy HH:mm"
+          },
+          {
+            "name": "DeviceId",
+            "dataType": "string",
+            "sourceColumn": "DeviceId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DeviceName",
+            "dataType": "string",
+            "sourceColumn": "DeviceName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MachineGroup",
+            "dataType": "string",
+            "sourceColumn": "MachineGroup",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ExposureLevel",
+            "dataType": "string",
+            "sourceColumn": "ExposureLevel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSPlatform",
+            "dataType": "string",
+            "sourceColumn": "OSPlatform",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSArchitecture",
+            "dataType": "string",
+            "sourceColumn": "OSArchitecture",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSName",
+            "dataType": "string",
+            "sourceColumn": "OSName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DeviceOSBuild",
+            "dataType": "string",
+            "sourceColumn": "DeviceOSBuild",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Platform",
+            "dataType": "string",
+            "sourceColumn": "Platform",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "BuildNumber",
+            "dataType": "int64",
+            "sourceColumn": "BuildNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PatchMonth",
+            "dataType": "string",
+            "sourceColumn": "PatchMonth",
+            "summarizeBy": "none",
+            "sortByColumn": "PatchMonthStart"
+          },
+          {
+            "name": "PatchMonthStart",
+            "dataType": "dateTime",
+            "sourceColumn": "PatchMonthStart",
+            "summarizeBy": "none",
+            "formatString": "dd-MMM-yyyy"
+          },
+          {
+            "name": "InstalledSecurityKB",
+            "dataType": "string",
+            "sourceColumn": "InstalledSecurityKB",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PatchesBehind",
+            "dataType": "int64",
+            "sourceColumn": "PatchesBehind",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CVEsMissed",
+            "dataType": "int64",
+            "sourceColumn": "CVEsMissed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CriticalCVEsMissed",
+            "dataType": "int64",
+            "sourceColumn": "CriticalCVEsMissed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ExploitedCVEsMissed",
+            "dataType": "int64",
+            "sourceColumn": "ExploitedCVEsMissed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "LatestPatchMonth",
+            "dataType": "string",
+            "sourceColumn": "LatestPatchMonth",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "LatestBuild",
+            "dataType": "string",
+            "sourceColumn": "LatestBuild",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSStillServiced",
+            "dataType": "boolean",
+            "sourceColumn": "OSStillServiced",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "VersionStatus",
+            "dataType": "string",
+            "sourceColumn": "VersionStatus",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PatchStatus",
+            "dataType": "string",
+            "sourceColumn": "PatchStatus",
+            "summarizeBy": "none",
+            "sortByColumn": "PatchStatusOrder"
+          },
+          {
+            "name": "PatchStatusOrder",
+            "dataType": "int64",
+            "sourceColumn": "PatchStatusOrder",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RiskLevel",
+            "dataType": "string",
+            "sourceColumn": "RiskLevel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DataSource",
+            "dataType": "string",
+            "sourceColumn": "DataSource",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DevicePatchLevel",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    // DataSource parameter: \"Defender\" = your tenant (Advanced Hunting API, organizational sign-in),",
+                "    // \"Sample\" = built-in example devices. Query text generated from kql/DevicePatchLevel.kql.",
+                "    AdvancedHuntingQuery = \"let LookbackDays = 30d;",
+                "let MediumAt = 1;",
+                "let HighAt = 2;",
+                "let CriticalAt = 3;",
+                "let Catalog = externaldata(",
+                "        OSFamily:string, OSName:string, Platform:string, BuildNumber:long, Revision:long,",
+                "        FullBuild:string, KB:string, UpdateType:string, PatchMonth:string, PatchMonthStart:datetime,",
+                "        ReleaseDate:datetime, ReleaseRank:long, IsLatestForOS:bool,",
+                "        CVECount:long, CriticalCVECount:long, ExploitedCVECount:long,",
+                "        CVEsReleasedSince:long, CriticalCVEsReleasedSince:long, ExploitedCVEsReleasedSince:long,",
+                "        OSLatestPatchMonth:string, OSLatestFullBuild:string, OSStillServiced:bool, MsrcDocumentId:string)",
+                "    [h@\"\"https://raw.githubusercontent.com/jaydxt/Windows_Release_History/master/data/Windows_Security_Releases.csv\"\"]",
+                "    with (format=\"\"csv\"\", ignoreFirstRecord=true);",
+                "let CatalogWithBuild = Catalog | where isnotnull(Revision);",
+                "let OSInfo = CatalogWithBuild",
+                "    | extend EarliestPatchMonth = PatchMonth, EarliestRank = ReleaseRank,",
+                "             EarliestCVEs = CVEsReleasedSince + CVECount,",
+                "             EarliestCriticalCVEs = CriticalCVEsReleasedSince + CriticalCVECount,",
+                "             EarliestExploitedCVEs = ExploitedCVEsReleasedSince + ExploitedCVECount",
+                "    | summarize arg_min(Revision, EarliestPatchMonth, EarliestRank, EarliestCVEs, EarliestCriticalCVEs, EarliestExploitedCVEs),",
+                "                CatalogOSName = take_any(OSName), OSStillServiced = take_any(OSStillServiced),",
+                "                OSLatestPatchMonth = take_any(OSLatestPatchMonth), OSLatestFullBuild = take_any(OSLatestFullBuild)",
+                "      by Platform, BuildNumber",
+                "    | project-away Revision;",
+                "let DeviceOS = DeviceInfo",
+                "    | where Timestamp > ago(LookbackDays)",
+                "    | where OSPlatform startswith \"\"Windows\"\"",
+                "    | summarize arg_max(Timestamp, *) by DeviceId",
+                "    | project LastSeen = Timestamp, DeviceId, DeviceName, MachineGroup, OSPlatform, OSVersionInfo,",
+                "              OSArchitecture, DeviceInfoBuild = OSBuild, ExposureLevel;",
+                "let TvmOS = DeviceTvmSoftwareInventory",
+                "    | where SoftwareVendor == \"\"microsoft\"\" and SoftwareName matches regex @\"\"^windows_(server_)?[0-9]\"\"",
+                "    | extend TvmBuild = tolong(extract(@\"\"(\\d{4,5})\\.(\\d+)$\"\", 1, SoftwareVersion)),",
+                "             TvmRevision = tolong(extract(@\"\"(\\d{4,5})\\.(\\d+)$\"\", 2, SoftwareVersion))",
+                "    | where isnotnull(TvmRevision)",
+                "    | summarize arg_max(TvmRevision, TvmBuild, DeviceOSBuild = SoftwareVersion) by DeviceId;",
+                "let Devices = DeviceOS",
+                "    | join kind=leftouter TvmOS on DeviceId",
+                "    | project-away DeviceId1",
+                "    | extend Platform = iff(OSPlatform contains \"\"Server\"\", \"\"Server\"\", \"\"Client\"\"),",
+                "             BuildNumber = coalesce(TvmBuild, tolong(DeviceInfoBuild)),",
+                "             Revision = TvmRevision;",
+                "let Matched = Devices",
+                "    | where isnotnull(Revision)",
+                "    | project DeviceId, Platform, BuildNumber, DeviceRevision = Revision",
+                "    | join kind=inner (CatalogWithBuild",
+                "        | project Platform, BuildNumber, Revision, OSName, PatchMonth, PatchMonthStart, KB, ReleaseRank,",
+                "                  CVEsReleasedSince, CriticalCVEsReleasedSince, ExploitedCVEsReleasedSince)",
+                "      on Platform, BuildNumber",
+                "    | where Revision <= DeviceRevision",
+                "    | summarize arg_max(Revision, OSName, PatchMonth, PatchMonthStart, KB, ReleaseRank,",
+                "                        CVEsReleasedSince, CriticalCVEsReleasedSince, ExploitedCVEsReleasedSince) by DeviceId",
+                "    | project-away Revision;",
+                "Devices",
+                "| join kind=leftouter Matched on DeviceId",
+                "| join kind=leftouter OSInfo on Platform, BuildNumber",
+                "| extend VersionStatus = case(",
+                "        isempty(CatalogOSName), \"\"Unverified version - OS build not in Microsoft security catalog\"\",",
+                "        isnull(Revision), \"\"Unverified version - build revision not reported\"\",",
+                "        isnull(ReleaseRank), \"\"Older than catalog history\"\",",
+                "        \"\"Verified\"\")",
+                "| extend OSName = coalesce(OSName, CatalogOSName, strcat(OSPlatform, \"\" \"\", OSVersionInfo)),",
+                "         PatchMonth = case(",
+                "            VersionStatus == \"\"Verified\"\", PatchMonth,",
+                "            VersionStatus == \"\"Older than catalog history\"\", strcat(\"\"Before \"\", EarliestPatchMonth),",
+                "            \"\"Unverified version\"\"),",
+                "         PatchesBehind = case(",
+                "            VersionStatus == \"\"Verified\"\", ReleaseRank - 1,",
+                "            VersionStatus == \"\"Older than catalog history\"\", EarliestRank,",
+                "            long(null)),",
+                "         CVEsMissed = iff(VersionStatus == \"\"Verified\"\", CVEsReleasedSince, iff(VersionStatus == \"\"Older than catalog history\"\", EarliestCVEs, long(null))),",
+                "         CriticalCVEsMissed = iff(VersionStatus == \"\"Verified\"\", CriticalCVEsReleasedSince, iff(VersionStatus == \"\"Older than catalog history\"\", EarliestCriticalCVEs, long(null))),",
+                "         ExploitedCVEsMissed = iff(VersionStatus == \"\"Verified\"\", ExploitedCVEsReleasedSince, iff(VersionStatus == \"\"Older than catalog history\"\", EarliestExploitedCVEs, long(null)))",
+                "| extend PatchStatus = case(",
+                "        VersionStatus startswith \"\"Unverified\"\", \"\"Unverified version\"\",",
+                "        OSStillServiced == false, \"\"Unsupported OS\"\",",
+                "        PatchesBehind == 0, \"\"Current\"\",",
+                "        PatchesBehind == 1, \"\"1 month behind\"\",",
+                "        PatchesBehind == 2, \"\"2 months behind\"\",",
+                "        PatchesBehind <= 5, \"\"3-5 months behind\"\",",
+                "        \"\"6+ months behind\"\")",
+                "| extend PatchStatusOrder = case(PatchStatus == \"\"Current\"\", 1, PatchStatus == \"\"1 month behind\"\", 2,",
+                "                                 PatchStatus == \"\"2 months behind\"\", 3, PatchStatus == \"\"3-5 months behind\"\", 4,",
+                "                                 PatchStatus == \"\"6+ months behind\"\", 5, PatchStatus == \"\"Unsupported OS\"\", 6, 7),",
+                "         RiskLevel = case(",
+                "            VersionStatus startswith \"\"Unverified\"\", \"\"Unknown\"\",",
+                "            OSStillServiced == false or PatchesBehind >= CriticalAt, \"\"Critical\"\",",
+                "            PatchesBehind >= HighAt, \"\"High\"\",",
+                "            PatchesBehind >= MediumAt, \"\"Medium\"\",",
+                "            \"\"Low\"\")",
+                "| project LastSeen, DeviceId, DeviceName, MachineGroup, ExposureLevel, OSPlatform, OSArchitecture,",
+                "          OSName, DeviceOSBuild = coalesce(DeviceOSBuild, tostring(BuildNumber)), Platform, BuildNumber,",
+                "          PatchMonth, PatchMonthStart, InstalledSecurityKB = KB, PatchesBehind,",
+                "          CVEsMissed, CriticalCVEsMissed, ExploitedCVEsMissed,",
+                "          LatestPatchMonth = OSLatestPatchMonth, LatestBuild = OSLatestFullBuild, OSStillServiced,",
+                "          VersionStatus, PatchStatus, PatchStatusOrder, RiskLevel",
+                "| order by PatchStatusOrder desc, PatchesBehind desc, DeviceName asc\",",
+                "    FromDefender = () =>",
+                "        let",
+                "            Response = Json.Document(Web.Contents(\"https://api.securitycenter.microsoft.com\", [",
+                "                RelativePath = \"api/advancedqueries/run\",",
+                "                Headers = [#\"Content-Type\" = \"application/json\"],",
+                "                Content = Json.FromValue([Query = AdvancedHuntingQuery])",
+                "            ])),",
+                "            Rows = Table.FromRecords(Response[Results], List.Transform(Response[Schema], each [Name]), MissingField.UseNull),",
+                "            LastSeenUtc = Table.TransformColumns(Rows, {{\"LastSeen\", each if _ = null then null else DateTimeZone.RemoveZone(DateTimeZone.From(_)), type nullable datetime},",
+                "                                                       {\"PatchMonthStart\", each if _ = null then null else Date.From(DateTimeZone.From(_)), type nullable date}})",
+                "        in",
+                "            LastSeenUtc,",
+                "    FromSample = () => #table({\"LastSeen\", \"DeviceId\", \"DeviceName\", \"MachineGroup\", \"ExposureLevel\", \"OSPlatform\", \"OSArchitecture\", \"OSName\", \"DeviceOSBuild\", \"Platform\", \"BuildNumber\", \"PatchMonth\", \"PatchMonthStart\", \"InstalledSecurityKB\", \"PatchesBehind\", \"CVEsMissed\", \"CriticalCVEsMissed\", \"ExploitedCVEsMissed\", \"LatestPatchMonth\", \"LatestBuild\", \"OSStillServiced\", \"VersionStatus\", \"PatchStatus\", \"PatchStatusOrder\", \"RiskLevel\"}, {",
+                "            {#datetime(2026,10,22,9,0,0), \"sample-0000\", \"SAMPLE-WS-000\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,22,2,0,0), \"sample-0001\", \"SAMPLE-WS-001\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,21,19,0,0), \"sample-0002\", \"SAMPLE-WS-002\", \"Sample - Finance\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,21,12,0,0), \"sample-0003\", \"SAMPLE-WS-003\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,21,5,0,0), \"sample-0004\", \"SAMPLE-WS-004\", \"Sample - Finance\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,20,22,0,0), \"sample-0005\", \"SAMPLE-WS-005\", \"Sample - Sales\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,20,15,0,0), \"sample-0006\", \"SAMPLE-WS-006\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,20,8,0,0), \"sample-0007\", \"SAMPLE-WS-007\", \"Sample - Sales\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,20,1,0,0), \"sample-0008\", \"SAMPLE-WS-008\", \"Sample - Engineering\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,19,18,0,0), \"sample-0009\", \"SAMPLE-WS-009\", \"Sample - Engineering\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,19,11,0,0), \"sample-0010\", \"SAMPLE-WS-010\", \"Sample - Finance\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,19,4,0,0), \"sample-0011\", \"SAMPLE-WS-011\", \"Sample - Sales\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9464\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,18,21,0,0), \"sample-0012\", \"SAMPLE-WS-012\", \"Sample - Engineering\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9168\", \"Client\", 26100, \"Aug-2026\", #date(2026,8,1), \"KB5121003\", 2, 1634, 78, 2, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,18,14,0,0), \"sample-0013\", \"SAMPLE-WS-013\", \"Sample - Finance\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,18,7,0,0), \"sample-0014\", \"SAMPLE-WS-014\", \"Sample - Finance\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9168\", \"Client\", 26100, \"Aug-2026\", #date(2026,8,1), \"KB5121003\", 2, 1634, 78, 2, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,18,0,0,0), \"sample-0015\", \"SAMPLE-WS-015\", \"Sample - Sales\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9168\", \"Client\", 26100, \"Aug-2026\", #date(2026,8,1), \"KB5121003\", 2, 1634, 78, 2, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,17,17,0,0), \"sample-0016\", \"SAMPLE-WS-016\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,17,10,0,0), \"sample-0017\", \"SAMPLE-WS-017\", \"Sample - Engineering\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,17,3,0,0), \"sample-0018\", \"SAMPLE-WS-018\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9445\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,16,20,0,0), \"sample-0019\", \"SAMPLE-WS-019\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,16,13,0,0), \"sample-0020\", \"SAMPLE-WS-020\", \"Sample - HR\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,16,6,0,0), \"sample-0021\", \"SAMPLE-WS-021\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9168\", \"Client\", 26100, \"Aug-2026\", #date(2026,8,1), \"KB5121003\", 2, 1634, 78, 2, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,15,23,0,0), \"sample-0022\", \"SAMPLE-WS-022\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,15,16,0,0), \"sample-0023\", \"SAMPLE-WS-023\", \"Sample - Engineering\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,15,9,0,0), \"sample-0024\", \"SAMPLE-WS-024\", \"Sample - Sales\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9454\", \"Client\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,15,2,0,0), \"sample-0025\", \"SAMPLE-WS-025\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 24H2\", \"10.0.26100.9711\", \"Client\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,14,19,0,0), \"sample-0026\", \"SAMPLE-WS-026\", \"Sample - Sales\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,14,12,0,0), \"sample-0027\", \"SAMPLE-WS-027\", \"Sample - HR\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9445\", \"Client\", 26200, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,14,5,0,0), \"sample-0028\", \"SAMPLE-WS-028\", \"Sample - Finance\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,13,22,0,0), \"sample-0029\", \"SAMPLE-WS-029\", \"Sample - HR\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,13,15,0,0), \"sample-0030\", \"SAMPLE-WS-030\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,13,8,0,0), \"sample-0031\", \"SAMPLE-WS-031\", \"Sample - Sales\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,13,1,0,0), \"sample-0032\", \"SAMPLE-WS-032\", \"Sample - Finance\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9445\", \"Client\", 26200, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,12,18,0,0), \"sample-0033\", \"SAMPLE-WS-033\", \"Sample - Engineering\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,12,11,0,0), \"sample-0034\", \"SAMPLE-WS-034\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,12,4,0,0), \"sample-0035\", \"SAMPLE-WS-035\", \"Sample - Engineering\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,11,21,0,0), \"sample-0036\", \"SAMPLE-WS-036\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9445\", \"Client\", 26200, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,11,14,0,0), \"sample-0037\", \"SAMPLE-WS-037\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,11,7,0,0), \"sample-0038\", \"SAMPLE-WS-038\", \"Sample - Finance\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9445\", \"Client\", 26200, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,11,0,0,0), \"sample-0039\", \"SAMPLE-WS-039\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,10,17,0,0), \"sample-0040\", \"SAMPLE-WS-040\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9445\", \"Client\", 26200, \"Sep-2026\", #date(2026,9,1), \"KB5124008\", 1, 1009, 25, 1, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,10,10,0,0), \"sample-0041\", \"SAMPLE-WS-041\", \"Sample - Finance\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,10,3,0,0), \"sample-0042\", \"SAMPLE-WS-042\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,22,8,0,0), \"sample-0043\", \"SAMPLE-WS-043\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 25H2\", \"10.0.26200.9711\", \"Client\", 26200, \"Oct-2026\", #date(2026,10,1), \"KB5127648\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26200.9711\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,22,1,0,0), \"sample-0044\", \"SAMPLE-WS-044\", \"Sample - HR\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7517\", \"Client\", 22631, \"Aug-2026\", #date(2026,8,1), \"KB5120240\", 2, 1564, 77, 2, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,21,18,0,0), \"sample-0045\", \"SAMPLE-WS-045\", \"Sample - Sales\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7079\", \"Client\", 22631, \"May-2026\", #date(2026,5,1), \"KB5087420\", 5, 1848, 103, 3, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,21,11,0,0), \"sample-0046\", \"SAMPLE-WS-046\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7079\", \"Client\", 22631, \"May-2026\", #date(2026,5,1), \"KB5087420\", 5, 1848, 103, 3, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,21,4,0,0), \"sample-0047\", \"SAMPLE-WS-047\", \"Sample - Engineering\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7582\", \"Client\", 22631, \"Sep-2026\", #date(2026,9,1), \"KB5122880\", 1, 965, 25, 1, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,20,21,0,0), \"sample-0048\", \"SAMPLE-WS-048\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7517\", \"Client\", 22631, \"Aug-2026\", #date(2026,8,1), \"KB5120240\", 2, 1564, 77, 2, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,20,14,0,0), \"sample-0049\", \"SAMPLE-WS-049\", \"Sample - Finance\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7652\", \"Client\", 22631, \"Oct-2026\", #date(2026,10,1), \"KB5126653\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,20,7,0,0), \"sample-0050\", \"SAMPLE-WS-050\", \"Sample - HR\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7652\", \"Client\", 22631, \"Oct-2026\", #date(2026,10,1), \"KB5126653\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,20,0,0,0), \"sample-0051\", \"SAMPLE-WS-051\", \"Sample - Finance\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7376\", \"Client\", 22631, \"Jul-2026\", #date(2026,7,1), \"KB5099414\", 3, 1730, 84, 3, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,19,17,0,0), \"sample-0052\", \"SAMPLE-WS-052\", \"Sample - Engineering\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7095\", \"Client\", 22631, \"May-2026\", #date(2026,5,1), \"KB5087420\", 5, 1848, 103, 3, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,19,10,0,0), \"sample-0053\", \"SAMPLE-WS-053\", \"Sample - Sales\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 23H2\", \"10.0.22631.7582\", \"Client\", 22631, \"Sep-2026\", #date(2026,9,1), \"KB5122880\", 1, 965, 25, 1, \"Oct-2026\", \"10.0.22631.7652\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,19,3,0,0), \"sample-0054\", \"SAMPLE-WS-054\", \"Sample - Sales\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7807\", \"Client\", 19045, \"Oct-2026\", #date(2026,10,1), \"KB5126657\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,18,20,0,0), \"sample-0055\", \"SAMPLE-WS-055\", \"Sample - Sales\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7548\", \"Client\", 19045, \"Jul-2026\", #date(2026,7,1), \"KB5099539\", 3, 1621, 76, 3, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,18,13,0,0), \"sample-0056\", \"SAMPLE-WS-056\", \"Sample - Sales\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7807\", \"Client\", 19045, \"Oct-2026\", #date(2026,10,1), \"KB5126657\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,18,6,0,0), \"sample-0057\", \"SAMPLE-WS-057\", \"Sample - Finance\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7548\", \"Client\", 19045, \"Jul-2026\", #date(2026,7,1), \"KB5099539\", 3, 1621, 76, 3, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,17,23,0,0), \"sample-0058\", \"SAMPLE-WS-058\", \"Sample - Finance\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.6379\", \"Client\", 19045, \"Sep-2025\", #date(2025,9,1), \"KB5065429\", 12, 2423, 119, 14, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,17,16,0,0), \"sample-0059\", \"SAMPLE-WS-059\", \"Sample - Finance\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7663\", \"Client\", 19045, \"Aug-2026\", #date(2026,8,1), \"KB5120249\", 2, 1464, 70, 2, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,17,9,0,0), \"sample-0060\", \"SAMPLE-WS-060\", \"Sample - Sales\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7737\", \"Client\", 19045, \"Sep-2026\", #date(2026,9,1), \"KB5122878\", 1, 899, 22, 1, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,17,2,0,0), \"sample-0061\", \"SAMPLE-WS-061\", \"Sample - HR\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7663\", \"Client\", 19045, \"Aug-2026\", #date(2026,8,1), \"KB5120249\", 2, 1464, 70, 2, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,16,19,0,0), \"sample-0062\", \"SAMPLE-WS-062\", \"Sample - Finance\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7807\", \"Client\", 19045, \"Oct-2026\", #date(2026,10,1), \"KB5126657\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,16,12,0,0), \"sample-0063\", \"SAMPLE-WS-063\", \"Sample - Finance\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.6216\", \"Client\", 19045, \"Aug-2025\", #date(2025,8,1), \"KB5063709\", 13, 2467, 126, 14, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,16,5,0,0), \"sample-0064\", \"SAMPLE-WS-064\", \"Sample - HR\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.6575\", \"Client\", 19045, \"Nov-2025\", #date(2025,11,1), \"KB5068781\", 10, 2297, 115, 10, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,15,22,0,0), \"sample-0065\", \"SAMPLE-WS-065\", \"Sample - HR\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.7548\", \"Client\", 19045, \"Jul-2026\", #date(2026,7,1), \"KB5099539\", 3, 1621, 76, 3, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,15,15,0,0), \"sample-0066\", \"SAMPLE-WS-066\", \"Sample - HR\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.6691\", \"Client\", 19045, \"Dec-2025\", #date(2025,12,1), \"KB5071546\", 9, 2269, 115, 9, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,15,8,0,0), \"sample-0067\", \"SAMPLE-WS-067\", \"Sample - Engineering\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.6332\", \"Client\", 19045, \"Sep-2025\", #date(2025,9,1), \"KB5065429\", 12, 2423, 119, 14, \"Oct-2026\", \"10.0.19045.7807\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,15,1,0,0), \"sample-0068\", \"SAMPLE-WS-068\", \"Sample - Engineering\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 21H2\", \"10.0.19044.7725\", \"Client\", 19044, \"Sep-2026\", #date(2026,9,1), \"KB5122878\", 1, 899, 22, 1, \"Oct-2026\", \"10.0.19044.7807\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,14,18,0,0), \"sample-0069\", \"SAMPLE-WS-069\", \"Sample - Sales\", \"Low\", \"Windows10\", \"x64\", \"Windows 10 Version 21H2\", \"10.0.19044.7663\", \"Client\", 19044, \"Aug-2026\", #date(2026,8,1), \"KB5120249\", 2, 1464, 70, 2, \"Oct-2026\", \"10.0.19044.7807\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,14,11,0,0), \"sample-0070\", \"SAMPLE-WS-070\", \"Sample - Finance\", \"Medium\", \"Windows10\", \"x64\", \"Windows 10 Version 21H2\", \"10.0.19044.7807\", \"Client\", 19044, \"Oct-2026\", #date(2026,10,1), \"KB5126657\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.19044.7807\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,14,4,0,0), \"sample-0071\", \"SAMPLE-WS-071\", \"Sample - Engineering\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 21H2\", \"10.0.19044.7807\", \"Client\", 19044, \"Oct-2026\", #date(2026,10,1), \"KB5126657\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.19044.7807\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,13,21,0,0), \"sample-0072\", \"SAMPLE-WS-072\", \"Sample - HR\", \"Low\", \"Windows11\", \"x64\", \"Windows 11 Version 22H2\", \"10.0.22621.6060\", \"Client\", 22621, \"Oct-2025\", #date(2025,10,1), \"KB5066793\", 0, 0, 0, 0, \"Oct-2025\", \"10.0.22621.6060\", false, \"Verified\", \"Unsupported OS\", 6, \"Critical\"},",
+                "            {#datetime(2026,10,13,14,0,0), \"sample-0073\", \"SAMPLE-WS-073\", \"Sample - HR\", \"Medium\", \"Windows11\", \"x64\", \"Windows 11 Version 22H2\", \"10.0.22621.6060\", \"Client\", 22621, \"Oct-2025\", #date(2025,10,1), \"KB5066793\", 0, 0, 0, 0, \"Oct-2025\", \"10.0.22621.6060\", false, \"Verified\", \"Unsupported OS\", 6, \"Critical\"},",
+                "            {#datetime(2026,10,13,7,0,0), \"sample-0074\", \"SAMPLE-WS-074\", \"Sample - HR\", \"High\", \"Windows11\", \"x64\", \"Windows 11 Version 22H2\", \"10.0.22621.6060\", \"Client\", 22621, \"Oct-2025\", #date(2025,10,1), \"KB5066793\", 0, 0, 0, 0, \"Oct-2025\", \"10.0.22621.6060\", false, \"Verified\", \"Unsupported OS\", 6, \"Critical\"},",
+                "            {#datetime(2026,10,13,0,0,0), \"sample-0075\", \"SAMPLE-SRV-075\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33438\", \"Server\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5122871\", 1, 1041, 35, 1, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,12,17,0,0), \"sample-0076\", \"SAMPLE-SRV-076\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33650\", \"Server\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5126646\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,12,10,0,0), \"sample-0077\", \"SAMPLE-SRV-077\", \"Sample - Datacenter\", \"High\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33650\", \"Server\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5126646\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,12,3,0,0), \"sample-0078\", \"SAMPLE-SRV-078\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33650\", \"Server\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5126646\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,11,20,0,0), \"sample-0079\", \"SAMPLE-SRV-079\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33650\", \"Server\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5126646\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,11,13,0,0), \"sample-0080\", \"SAMPLE-SRV-080\", \"Sample - DMZ\", \"High\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33478\", \"Server\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5122871\", 1, 1041, 35, 1, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,11,6,0,0), \"sample-0081\", \"SAMPLE-SRV-081\", \"Sample - DMZ\", \"Low\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33452\", \"Server\", 26100, \"Sep-2026\", #date(2026,9,1), \"KB5122871\", 1, 1041, 35, 1, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,10,23,0,0), \"sample-0082\", \"SAMPLE-SRV-082\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2025\", \"x64\", \"Windows Server 2025\", \"10.0.26100.33650\", \"Server\", 26100, \"Oct-2026\", #date(2026,10,1), \"KB5126646\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.26100.33650\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,10,16,0,0), \"sample-0083\", \"SAMPLE-SRV-083\", \"Sample - Datacenter\", \"High\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5761\", \"Server\", 20348, \"Oct-2026\", #date(2026,10,1), \"KB5126655\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,10,9,0,0), \"sample-0084\", \"SAMPLE-SRV-084\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5622\", \"Server\", 20348, \"Sep-2026\", #date(2026,9,1), \"KB5122882\", 1, 977, 33, 1, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,10,2,0,0), \"sample-0085\", \"SAMPLE-SRV-085\", \"Sample - DMZ\", \"Medium\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5139\", \"Server\", 20348, \"May-2026\", #date(2026,5,1), \"KB5087545\", 5, 2235, 161, 4, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,22,7,0,0), \"sample-0086\", \"SAMPLE-SRV-086\", \"Sample - Datacenter\", \"High\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5499\", \"Server\", 20348, \"Aug-2026\", #date(2026,8,1), \"KB5120242\", 2, 1615, 93, 2, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,22,0,0,0), \"sample-0087\", \"SAMPLE-SRV-087\", \"Sample - DMZ\", \"Low\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5761\", \"Server\", 20348, \"Oct-2026\", #date(2026,10,1), \"KB5126655\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,21,17,0,0), \"sample-0088\", \"SAMPLE-SRV-088\", \"Sample - DMZ\", \"Medium\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5256\", \"Server\", 20348, \"Jun-2026\", #date(2026,6,1), \"KB5094128\", 4, 2130, 140, 4, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,21,10,0,0), \"sample-0089\", \"SAMPLE-SRV-089\", \"Sample - Datacenter\", \"High\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5761\", \"Server\", 20348, \"Oct-2026\", #date(2026,10,1), \"KB5126655\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,21,3,0,0), \"sample-0090\", \"SAMPLE-SRV-090\", \"Sample - DMZ\", \"Low\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5499\", \"Server\", 20348, \"Aug-2026\", #date(2026,8,1), \"KB5120242\", 2, 1615, 93, 2, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,20,20,0,0), \"sample-0091\", \"SAMPLE-SRV-091\", \"Sample - DMZ\", \"Medium\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5761\", \"Server\", 20348, \"Oct-2026\", #date(2026,10,1), \"KB5126655\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,20,13,0,0), \"sample-0092\", \"SAMPLE-SRV-092\", \"Sample - DMZ\", \"High\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5521\", \"Server\", 20348, \"Aug-2026\", #date(2026,8,1), \"KB5120242\", 2, 1615, 93, 2, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,20,6,0,0), \"sample-0093\", \"SAMPLE-SRV-093\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5386\", \"Server\", 20348, \"Jul-2026\", #date(2026,7,1), \"KB5099540\", 3, 1806, 112, 3, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,19,23,0,0), \"sample-0094\", \"SAMPLE-SRV-094\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2022\", \"x64\", \"Windows Server 2022\", \"10.0.20348.5499\", \"Server\", 20348, \"Aug-2026\", #date(2026,8,1), \"KB5120242\", 2, 1615, 93, 2, \"Oct-2026\", \"10.0.20348.5761\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,19,16,0,0), \"sample-0095\", \"SAMPLE-SRV-095\", \"Sample - Datacenter\", \"High\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.9376\", \"Server\", 17763, \"Oct-2026\", #date(2026,10,1), \"KB5126651\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,19,9,0,0), \"sample-0096\", \"SAMPLE-SRV-096\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.8644\", \"Server\", 17763, \"Apr-2026\", #date(2026,4,1), \"KB5082123\", 6, 2162, 153, 4, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,19,2,0,0), \"sample-0097\", \"SAMPLE-SRV-097\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.9040\", \"Server\", 17763, \"Jul-2026\", #date(2026,7,1), \"KB5099538\", 3, 1708, 106, 3, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,18,19,0,0), \"sample-0098\", \"SAMPLE-SRV-098\", \"Sample - DMZ\", \"High\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.9121\", \"Server\", 17763, \"Aug-2026\", #date(2026,8,1), \"KB5120238\", 2, 1527, 88, 2, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,18,12,0,0), \"sample-0099\", \"SAMPLE-SRV-099\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.9376\", \"Server\", 17763, \"Oct-2026\", #date(2026,10,1), \"KB5126651\", 0, 0, 0, 0, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"Current\", 1, \"Low\"},",
+                "            {#datetime(2026,10,18,5,0,0), \"sample-0100\", \"SAMPLE-SRV-100\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.8880\", \"Server\", 17763, \"Jun-2026\", #date(2026,6,1), \"KB5094123\", 4, 2018, 133, 4, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,17,22,0,0), \"sample-0101\", \"SAMPLE-SRV-101\", \"Sample - DMZ\", \"High\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.8644\", \"Server\", 17763, \"Apr-2026\", #date(2026,4,1), \"KB5082123\", 6, 2162, 153, 4, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,17,15,0,0), \"sample-0102\", \"SAMPLE-SRV-102\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.8511\", \"Server\", 17763, \"Mar-2026\", #date(2026,3,1), \"KB5078752\", 7, 2265, 156, 4, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"6+ months behind\", 5, \"Critical\"},",
+                "            {#datetime(2026,10,17,8,0,0), \"sample-0103\", \"SAMPLE-SRV-103\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2019\", \"x64\", \"Windows Server 2019\", \"10.0.17763.8755\", \"Server\", 17763, \"May-2026\", #date(2026,5,1), \"KB5087538\", 5, 2107, 149, 4, \"Oct-2026\", \"10.0.17763.9376\", true, \"Verified\", \"3-5 months behind\", 4, \"Critical\"},",
+                "            {#datetime(2026,10,17,1,0,0), \"sample-0104\", \"SAMPLE-SRV-104\", \"Sample - DMZ\", \"High\", \"WindowsServer2016\", \"x64\", \"Windows Server 2016\", \"10.0.14393.9512\", \"Server\", 14393, \"Sep-2026\", #date(2026,9,1), \"KB5123099\", 1, 750, 26, 1, \"Oct-2026\", \"10.0.14393.9612\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,16,18,0,0), \"sample-0105\", \"SAMPLE-SRV-105\", \"Sample - Datacenter\", \"Low\", \"WindowsServer2016\", \"x64\", \"Windows Server 2016\", \"10.0.14393.9418\", \"Server\", 14393, \"Aug-2026\", #date(2026,8,1), \"KB5120418\", 2, 1300, 74, 2, \"Oct-2026\", \"10.0.14393.9612\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,16,11,0,0), \"sample-0106\", \"SAMPLE-SRV-106\", \"Sample - Datacenter\", \"Medium\", \"WindowsServer2016\", \"x64\", \"Windows Server 2016\", \"10.0.14393.9512\", \"Server\", 14393, \"Sep-2026\", #date(2026,9,1), \"KB5123099\", 1, 750, 26, 1, \"Oct-2026\", \"10.0.14393.9612\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,16,4,0,0), \"sample-0107\", \"SAMPLE-SRV-107\", \"Sample - Datacenter\", \"High\", \"WindowsServer2016\", \"x64\", \"Windows Server 2016\", \"10.0.14393.9418\", \"Server\", 14393, \"Aug-2026\", #date(2026,8,1), \"KB5120418\", 2, 1300, 74, 2, \"Oct-2026\", \"10.0.14393.9612\", true, \"Verified\", \"2 months behind\", 3, \"High\"},",
+                "            {#datetime(2026,10,15,21,0,0), \"sample-0108\", \"SAMPLE-SRV-108\", \"Sample - DMZ\", \"Low\", \"WindowsServer2016\", \"x64\", \"Windows Server 2016\", \"10.0.14393.9512\", \"Server\", 14393, \"Sep-2026\", #date(2026,9,1), \"KB5123099\", 1, 750, 26, 1, \"Oct-2026\", \"10.0.14393.9612\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,15,14,0,0), \"sample-0109\", \"SAMPLE-SRV-109\", \"Sample - DMZ\", \"Medium\", \"WindowsServer2012R2\", \"x64\", \"Windows Server 2012 R2\", \"6.3.9600.23398\", \"Server\", 9600, \"Sep-2026\", #date(2026,9,1), \"KB5123066\", 1, 649, 23, 1, \"Oct-2026\", \"6.3.9600.23470\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,15,7,0,0), \"sample-0110\", \"SAMPLE-SRV-110\", \"Sample - Datacenter\", \"High\", \"WindowsServer2012R2\", \"x64\", \"Windows Server 2012 R2\", \"6.3.9600.23398\", \"Server\", 9600, \"Sep-2026\", #date(2026,9,1), \"KB5123066\", 1, 649, 23, 1, \"Oct-2026\", \"6.3.9600.23470\", true, \"Verified\", \"1 month behind\", 2, \"Medium\"},",
+                "            {#datetime(2026,10,15,0,0,0), \"sample-0111\", \"SAMPLE-WS-111\", \"Sample - Engineering\", \"Low\", \"Windows11\", \"x64\", \"Windows11 \", \"10.0.27950.1000\", \"Client\", 27950, \"Unverified version\", null, null, null, null, null, null, null, null, null, \"Unverified version - OS build not in Microsoft security catalog\", \"Unverified version\", 7, \"Unknown\"},",
+                "            {#datetime(2026,10,14,17,0,0), \"sample-0112\", \"SAMPLE-SRV-112\", \"Sample - Engineering\", \"Medium\", \"WindowsServer2022\", \"x64\", \"WindowsServer2022 \", \"20348\", \"Server\", 20348, \"Unverified version\", null, null, null, null, null, null, null, null, null, \"Unverified version - build revision not reported\", \"Unverified version\", 7, \"Unknown\"},",
+                "            {#datetime(2026,10,14,10,0,0), \"sample-0113\", \"SAMPLE-WS-113\", \"Sample - Engineering\", \"High\", \"Windows10\", \"x64\", \"Windows 10 Version 22H2\", \"10.0.19045.1288\", \"Client\", 19045, \"Before Nov-2022\", null, null, 47, 3958, 241, 70, \"Oct-2026\", \"10.0.19045.7807\", true, \"Older than catalog history\", \"6+ months behind\", 5, \"Critical\"}",
+                "        }),",
+                "    Source = if DataSource = \"Defender\" then FromDefender() else FromSample(),",
+                "    AllColumns = Table.SelectColumns(Source, {\"LastSeen\", \"DeviceId\", \"DeviceName\", \"MachineGroup\", \"ExposureLevel\", \"OSPlatform\", \"OSArchitecture\", \"OSName\", \"DeviceOSBuild\", \"Platform\", \"BuildNumber\", \"PatchMonth\", \"PatchMonthStart\", \"InstalledSecurityKB\", \"PatchesBehind\", \"CVEsMissed\", \"CriticalCVEsMissed\", \"ExploitedCVEsMissed\", \"LatestPatchMonth\", \"LatestBuild\", \"OSStillServiced\", \"VersionStatus\", \"PatchStatus\", \"PatchStatusOrder\", \"RiskLevel\"}, MissingField.UseNull),",
+                "    WithSource = Table.AddColumn(AllColumns, \"DataSource\", each DataSource, type text),",
+                "    Typed = Table.TransformColumnTypes(WithSource, {{\"LastSeen\", type datetime}, {\"DeviceId\", type text}, {\"DeviceName\", type text}, {\"MachineGroup\", type text}, {\"ExposureLevel\", type text}, {\"OSPlatform\", type text}, {\"OSArchitecture\", type text}, {\"OSName\", type text}, {\"DeviceOSBuild\", type text}, {\"Platform\", type text}, {\"BuildNumber\", Int64.Type}, {\"PatchMonth\", type text}, {\"PatchMonthStart\", type date}, {\"InstalledSecurityKB\", type text}, {\"PatchesBehind\", Int64.Type}, {\"CVEsMissed\", Int64.Type}, {\"CriticalCVEsMissed\", Int64.Type}, {\"ExploitedCVEsMissed\", Int64.Type}, {\"LatestPatchMonth\", type text}, {\"LatestBuild\", type text}, {\"OSStillServiced\", type logical}, {\"VersionStatus\", type text}, {\"PatchStatus\", type text}, {\"PatchStatusOrder\", Int64.Type}, {\"RiskLevel\", type text}, {\"DataSource\", type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Devices",
+            "expression": "DISTINCTCOUNT ( DevicePatchLevel[DeviceId] )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Devices Current",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchStatus] = \"Current\" )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "% Current",
+            "expression": "DIVIDE ( [Devices Current], [Devices] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Devices Behind",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchesBehind] >= 1 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Devices Critical Risk",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[RiskLevel] = \"Critical\" )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Devices Unsupported OS",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchStatus] = \"Unsupported OS\" )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Devices Unverified",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[PatchStatus] = \"Unverified version\" )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Avg Patches Behind",
+            "expression": "AVERAGEX ( FILTER ( DevicePatchLevel, NOT ISBLANK ( DevicePatchLevel[PatchesBehind] ) ), DevicePatchLevel[PatchesBehind] )",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Devices Missing Exploited CVEs",
+            "expression": "CALCULATE ( [Devices], DevicePatchLevel[ExploitedCVEsMissed] > 0 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Latest Patch Month",
+            "expression": "FORMAT ( MAX ( WindowsSecurityReleases[PatchMonthStart] ), \"MMM-yyyy\" )"
+          },
+          {
+            "name": "Report Subtitle",
+            "expression": "\"Data: \" & SELECTEDVALUE ( DevicePatchLevel[DataSource], \"Defender\" ) & \"  |  Devices seen up to \" & FORMAT ( MAX ( DevicePatchLevel[LastSeen] ), \"dd-MMM-yyyy HH:mm\" ) & \"  |  Latest Microsoft release: \" & [Latest Patch Month]"
+          }
+        ]
+      },
+      {
+        "name": "WindowsSecurityReleases",
+        "columns": [
+          {
+            "name": "OSFamily",
+            "dataType": "string",
+            "sourceColumn": "OSFamily",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSName",
+            "dataType": "string",
+            "sourceColumn": "OSName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Platform",
+            "dataType": "string",
+            "sourceColumn": "Platform",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "BuildNumber",
+            "dataType": "int64",
+            "sourceColumn": "BuildNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Revision",
+            "dataType": "int64",
+            "sourceColumn": "Revision",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FullBuild",
+            "dataType": "string",
+            "sourceColumn": "FullBuild",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "KB",
+            "dataType": "string",
+            "sourceColumn": "KB",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "UpdateType",
+            "dataType": "string",
+            "sourceColumn": "UpdateType",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PatchMonth",
+            "dataType": "string",
+            "sourceColumn": "PatchMonth",
+            "summarizeBy": "none",
+            "sortByColumn": "PatchMonthStart"
+          },
+          {
+            "name": "PatchMonthStart",
+            "dataType": "dateTime",
+            "sourceColumn": "PatchMonthStart",
+            "summarizeBy": "none",
+            "formatString": "dd-MMM-yyyy"
+          },
+          {
+            "name": "ReleaseDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ReleaseDate",
+            "summarizeBy": "none",
+            "formatString": "dd-MMM-yyyy"
+          },
+          {
+            "name": "ReleaseRank",
+            "dataType": "int64",
+            "sourceColumn": "ReleaseRank",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsLatestForOS",
+            "dataType": "boolean",
+            "sourceColumn": "IsLatestForOS",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CVECount",
+            "dataType": "int64",
+            "sourceColumn": "CVECount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CriticalCVECount",
+            "dataType": "int64",
+            "sourceColumn": "CriticalCVECount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ExploitedCVECount",
+            "dataType": "int64",
+            "sourceColumn": "ExploitedCVECount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CVEsReleasedSince",
+            "dataType": "int64",
+            "sourceColumn": "CVEsReleasedSince",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CriticalCVEsReleasedSince",
+            "dataType": "int64",
+            "sourceColumn": "CriticalCVEsReleasedSince",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ExploitedCVEsReleasedSince",
+            "dataType": "int64",
+            "sourceColumn": "ExploitedCVEsReleasedSince",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSLatestPatchMonth",
+            "dataType": "string",
+            "sourceColumn": "OSLatestPatchMonth",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSLatestFullBuild",
+            "dataType": "string",
+            "sourceColumn": "OSLatestFullBuild",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OSStillServiced",
+            "dataType": "boolean",
+            "sourceColumn": "OSStillServiced",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MsrcDocumentId",
+            "dataType": "string",
+            "sourceColumn": "MsrcDocumentId",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "WindowsSecurityReleases",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    // Public catalog maintained by GitHub Actions (anonymous access).",
+                "    Source = Csv.Document(",
+                "        Web.Contents(\"https://raw.githubusercontent.com\", [RelativePath = \"jaydxt/Windows_Release_History/master/data/Windows_Security_Releases.csv\"]),",
+                "        [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"OSFamily\", type text}, {\"OSName\", type text}, {\"Platform\", type text}, {\"BuildNumber\", Int64.Type}, {\"Revision\", Int64.Type}, {\"FullBuild\", type text}, {\"KB\", type text}, {\"UpdateType\", type text}, {\"PatchMonth\", type text}, {\"PatchMonthStart\", type date}, {\"ReleaseDate\", type date}, {\"ReleaseRank\", Int64.Type}, {\"IsLatestForOS\", type logical}, {\"CVECount\", Int64.Type}, {\"CriticalCVECount\", Int64.Type}, {\"ExploitedCVECount\", Int64.Type}, {\"CVEsReleasedSince\", Int64.Type}, {\"CriticalCVEsReleasedSince\", Int64.Type}, {\"ExploitedCVEsReleasedSince\", Int64.Type}, {\"OSLatestPatchMonth\", type text}, {\"OSLatestFullBuild\", type text}, {\"OSStillServiced\", type logical}, {\"MsrcDocumentId\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": []
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DataSource",
+        "kind": "m",
+        "expression": "\"Sample\" meta [IsParameterQuery=true, List={\"Defender\", \"Sample\"}, DefaultValue=\"Defender\", Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataSource\", \"DevicePatchLevel\", \"WindowsSecurityReleases\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}

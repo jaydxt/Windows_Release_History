@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "overview_16",
+  "position": {
+    "x": 710,
+    "y": 452,
+    "z": 16000,
+    "width": 554,
+    "height": 262,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "DeviceName"
+                }
+              },
+              "queryRef": "DevicePatchLevel.DeviceName",
+              "nativeQueryRef": "DeviceName",
+              "displayName": "Device"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "OSName"
+                }
+              },
+              "queryRef": "DevicePatchLevel.OSName",
+              "nativeQueryRef": "OSName",
+              "displayName": "OS version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "PatchMonth"
+                }
+              },
+              "queryRef": "DevicePatchLevel.PatchMonth",
+              "nativeQueryRef": "PatchMonth",
+              "displayName": "Patch month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "PatchesBehind"
+                }
+              },
+              "queryRef": "DevicePatchLevel.PatchesBehind",
+              "nativeQueryRef": "PatchesBehind",
+              "displayName": "Releases behind"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DevicePatchLevel"
+                    }
+                  },
+                  "Property": "RiskLevel"
+                }
+              },
+              "queryRef": "DevicePatchLevel.RiskLevel",
+              "nativeQueryRef": "RiskLevel",
+              "displayName": "Risk"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DevicePatchLevel"
+                  }
+                },
+                "Property": "PatchesBehind"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Devices furthest behind'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
